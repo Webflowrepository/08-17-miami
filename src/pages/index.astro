@@ -69,33 +69,14 @@ import '../styles/global.css';
   </section>
   -->
 
-  <!-- 03. INSTAGRAM — live feed, instagram.com grid style -->
-  <!-- The grid is replaced with the latest @gild.hq posts by /api/ig-feed. -->
+  <!-- 03. INSTAGRAM — official live profile embed -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
-
-    <!-- Profile header — like instagram.com -->
-    <div class="ig-profile">
-      <svg class="ig-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-      </svg>
-      <div class="ig-profile-text">
-        <a
-          href="https://www.instagram.com/gild.hq/"
-          target="_blank"
-          rel="noopener"
-          class="ig-username"
-          aria-label="Open @gild.hq on Instagram"
-        >@gild.hq →</a>
-        <p class="ig-bio text-body-s" style="color: var(--color-fg-muted);">Private B2B operator community · Austin</p>
-      </div>
-    </div>
-
-    <div class="ig-feed" data-ig-feed aria-live="polite">
-      <p class="ig-feed-status text-body-s">Loading the latest posts from Instagram…</p>
-    </div>
-
+    <iframe
+      class="ig-embed"
+      src="https://www.instagram.com/gild.hq/embed/"
+      title="Latest posts from GILD on Instagram"
+      loading="lazy"
+    ></iframe>
   </section>
 
 
@@ -104,7 +85,7 @@ import '../styles/global.css';
 <style>
   /* ── HERO ── */
   .hero-section {
-    min-height: 62vh;
+    min-height: 54vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -199,108 +180,26 @@ import '../styles/global.css';
     50% { transform: translateY(8px); opacity: 0.9; }
   }
 
-  /* ── INSTAGRAM — instagram.com grid style ── */
+  /* ── INSTAGRAM — official profile embed ── */
   .ig-section {
     padding-top: 8px;
     padding-bottom: 0;
   }
 
-  /* Profile header row */
-  .ig-profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 0 24px 24px;
-    max-width: 935px;
-    margin: 0 auto;
-  }
-
-  .ig-avatar-icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    color: var(--color-fg-muted);
-  }
-
-  .ig-profile-text {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .ig-username {
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--color-fg);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    transition: color var(--duration-hover) var(--ease-entrance);
-  }
-
-  .ig-username:hover {
-    color: var(--color-accent);
-  }
-
-  .ig-bio {
-    margin: 0;
-  }
-
-  /* Feed — full-bleed, 3 cols, 3px gap like instagram.com */
-  .ig-feed {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
+  .ig-embed {
+    display: block;
     width: 100%;
     max-width: 935px;
+    height: clamp(560px, 72vh, 800px);
     margin: 0 auto;
-  }
-
-  .ig-feed-status {
-    grid-column: 1 / -1;
-    margin: 0;
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--color-fg-muted);
-  }
-
-  .ig-post {
-    display: block;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background: var(--color-surface, #111);
-  }
-
-  .ig-post img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.2s ease;
-  }
-
-  .ig-post:hover img {
-    opacity: 0.82;
+    border: 0;
+    background: #fff;
   }
 
 
   @media (min-width: 768px) {
     .ig-section {
       padding-top: 12px;
-    }
-
-    .ig-profile {
-      padding: 0 0 28px;
-      gap: 24px;
-    }
-
-    .ig-avatar-icon {
-      width: 64px;
-      height: 64px;
-    }
-
-    .ig-username {
-      font-size: 20px;
     }
   }
 
@@ -373,8 +272,8 @@ import '../styles/global.css';
   /* ── Mobile: fit hero in 100vh ── */
   @media (max-width: 767px) {
     .hero-section {
-      min-height: 65vh;
-      min-height: 65dvh;
+      min-height: 58vh;
+      min-height: 58dvh;
       padding: 36px 20px;
     }
 
@@ -420,7 +319,7 @@ import '../styles/global.css';
   /* ── Desktop ── */
   @media (min-width: 768px) {
     .hero-section {
-      min-height: 62vh;
+      min-height: 54vh;
       padding: 56px 64px;
     }
   }
@@ -437,60 +336,6 @@ import '../styles/global.css';
       delay: 0.4,
     });
 
-    // Instagram section entrance
-    animateFadeUp('.ig-section', '.ig-profile, .ig-feed', { stagger: 0.15 });
-
-    const feed = document.querySelector('[data-ig-feed]');
-    if (!feed) return;
-
-    const showFeedStatus = (message: string) => {
-      const status = document.createElement('p');
-      status.className = 'ig-feed-status text-body-s';
-      status.textContent = message;
-      feed.replaceChildren(status);
-    };
-
-    fetch('/api/ig-feed')
-      .then((response) => {
-        if (!response.ok) throw new Error('Instagram feed unavailable');
-        return response.json();
-      })
-      .then(({ posts }) => {
-        if (!Array.isArray(posts) || posts.length === 0) {
-          showFeedStatus('Latest Instagram posts are unavailable right now.');
-          return;
-        }
-
-        const fragment = document.createDocumentFragment();
-
-        posts.forEach((post) => {
-          if (!post?.img || !post?.url) return;
-
-          const link = document.createElement('a');
-          link.href = post.url;
-          link.target = '_blank';
-          link.rel = 'noopener';
-          link.className = 'ig-post';
-          link.setAttribute('aria-label', 'Open post from @gild.hq on Instagram');
-
-          const image = document.createElement('img');
-          image.src = post.img;
-          image.alt = 'Latest post from GILD on Instagram';
-          image.loading = 'lazy';
-          image.decoding = 'async';
-
-          link.append(image);
-          fragment.append(link);
-        });
-
-        if (fragment.childNodes.length > 0) {
-          feed.replaceChildren(fragment);
-        } else {
-          showFeedStatus('Latest Instagram posts are unavailable right now.');
-        }
-      })
-      .catch(() => {
-        showFeedStatus('Latest Instagram posts are unavailable right now.');
-      });
+    animateFadeUp('.ig-section', '.ig-embed');
   });
 </script>
