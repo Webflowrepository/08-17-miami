@@ -101,6 +101,23 @@ const instagramPosts = [
     </div>
   </section>
 
+  <!-- 04. NEXT EVENT -->
+  <section class="next-event-wrapper" aria-label="Next GILD event">
+    <div class="next-event-header">
+      <p class="text-eyebrow next-event-label">Next event</p>
+      <p class="next-event-city">Miami · Coral Gables</p>
+      <p class="next-event-date">Tuesday, October 6 · 6:00 PM</p>
+    </div>
+    <div class="next-event-content">
+      <a href="https://luma.com/GILD29" target="_blank" rel="noopener" class="next-event-link" aria-label="Open Miami GILD AI Forum on Luma">
+        <img src="/assets/events/gild29.png" alt="Miami GILD AI Forum x Tecla" class="next-event-image" loading="lazy" decoding="async" />
+        <div class="next-event-overlay" aria-hidden="true">
+          <span class="text-button">VIEW EVENT ON LUMA →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
 
 </Layout>
 
@@ -282,6 +299,32 @@ const instagramPosts = [
   .next-event-header {
     max-width: 480px;
     margin: 0 auto;
+    text-align: center;
+  }
+
+  .next-event-label,
+  .next-event-city,
+  .next-event-date {
+    margin: 0;
+  }
+
+  .next-event-label {
+    color: var(--color-accent);
+    margin-bottom: 12px;
+  }
+
+  .next-event-city {
+    color: var(--color-fg);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  .next-event-date {
+    margin-top: 8px;
+    color: var(--color-fg-muted);
+    font-size: 14px;
+    letter-spacing: 0.04em;
   }
 
   .next-event-content {
