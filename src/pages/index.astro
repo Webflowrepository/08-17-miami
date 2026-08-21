@@ -6,6 +6,18 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
+const instagramPosts = [
+  { src: '/assets/instagram/post-01.jpg', url: 'https://www.instagram.com/gild.hq/reel/DcMKeHBAU3I/' },
+  { src: '/assets/instagram/post-02.jpg', url: 'https://www.instagram.com/gild.hq/p/DcAFVOKHNaa/' },
+  { src: '/assets/instagram/post-03.jpg', url: 'https://www.instagram.com/gild.hq/p/DbuDyEcnNAM/' },
+  { src: '/assets/instagram/post-04.jpg', url: 'https://www.instagram.com/gild.hq/reel/DbmNsS9Efoq/' },
+  { src: '/assets/instagram/post-05.jpg', url: 'https://www.instagram.com/gild.hq/reel/DbTnKxvIJuw/' },
+  { src: '/assets/instagram/post-06.jpg', url: 'https://www.instagram.com/gild.hq/reel/DbMPbsKj9g4/' },
+  { src: '/assets/instagram/post-07.jpg', url: 'https://www.instagram.com/gild.hq/p/DbEpUy-IMd0/' },
+  { src: '/assets/instagram/post-08.jpg', url: 'https://www.instagram.com/gild.hq/p/Da7GMLDncr8/' },
+  { src: '/assets/instagram/post-09.jpg', url: 'https://www.instagram.com/gild.hq/reel/DamEXZ1ia1b/' },
+];
+
 // Gallery photos kept here — uncomment Gallery below to restore the event photo grid.
 // import Gallery from '../components/Gallery.astro';
 
@@ -69,16 +81,14 @@ import '../styles/global.css';
   </section>
   -->
 
-  <!-- 03. INSTAGRAM — official live profile embed -->
+  <!-- 03. INSTAGRAM — latest posts from @gild.hq -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
-    <div class="ig-feed-window">
-      <iframe
-        class="ig-embed"
-        src="https://www.instagram.com/gild.hq/embed/"
-        title="Latest posts from GILD on Instagram"
-        loading="lazy"
-        scrolling="no"
-      ></iframe>
+    <div class="ig-grid">
+      {instagramPosts.map((post) => (
+        <a href={post.url} target="_blank" rel="noopener" class="ig-post" aria-label="Open GILD post on Instagram">
+          <img src={post.src} alt="GILD Instagram post" loading="lazy" decoding="async" />
+        </a>
+      ))}
     </div>
   </section>
 
@@ -183,27 +193,37 @@ import '../styles/global.css';
     50% { transform: translateY(8px); opacity: 0.9; }
   }
 
-  /* ── INSTAGRAM — official profile embed ── */
+  /* ── INSTAGRAM — 3 × 3 grid ── */
   .ig-section {
     padding-top: 8px;
     padding-bottom: 0;
   }
 
-  .ig-feed-window {
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
     width: 100%;
     max-width: 935px;
-    aspect-ratio: 1;
     margin: 0 auto;
-    overflow: hidden;
-    background: var(--color-bg);
   }
 
-  .ig-embed {
+  .ig-post {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .ig-post img {
     display: block;
     width: 100%;
-    height: calc(100% + 156px);
-    transform: translateY(-156px);
-    border: 0;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+  }
+
+  .ig-post:hover img {
+    opacity: 0.82;
   }
 
 
@@ -346,6 +366,6 @@ import '../styles/global.css';
       delay: 0.4,
     });
 
-    animateFadeUp('.ig-section', '.ig-feed-window');
+    animateFadeUp('.ig-section', '.ig-post', { stagger: 0.06 });
   });
 </script>
