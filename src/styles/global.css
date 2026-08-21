@@ -3,8 +3,8 @@
    Import order: Fonts → Tailwind → Theme tokens
    ============================================================ */
 
-/* ── Fonts (Inter Variable with optical sizing + JetBrains Mono) ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght,opsz@100..900,14..32&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ── Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap');
 
 /* ── Tailwind v4 base ── */
 @import "tailwindcss";
