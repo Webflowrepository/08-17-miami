@@ -4,12 +4,24 @@
  */
 
 import Layout from '../layouts/Layout.astro';
-import RoomInAggregate from '../components/RoomInAggregate.astro';
-import Briefing from '../components/Briefing.astro';
 import Gallery from '../components/Gallery.astro';
 import editionData from '../content/edition-no-01.json';
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 import '../styles/global.css';
+
+// Load ALL photos from public/assets/photos/event/ at build time.
+// No need to list files in the JSON — just drop photos in the folder.
+const eventDir = resolve('./public/assets/photos/event');
+const allEventPhotos = readdirSync(eventDir)
+  .filter(f => /\.(jpe?g|png|webp)$/i.test(f))
+  .sort()
+  .map(f => ({
+    src: `/assets/photos/event/${f}`,
+    alt: 'GILD Event Photo',
+    aspect: 'wide' as const,
+  }));
 ---
 
 <Layout
@@ -45,10 +57,10 @@ import '../styles/global.css';
     </div>
   </section>
 
-  <!-- 02. GALLERY -->
+  <!-- 02. GALLERY — all photos from public/assets/photos/event/ -->
   <Gallery
     eyebrow={editionData.gallery.eyebrow}
-    photos={editionData.gallery.photos}
+    photos={allEventPhotos}
   />
   
   <!-- 03. NEXT EVENT — kept, add back when needed
@@ -69,42 +81,57 @@ import '../styles/global.css';
   </section>
   -->
 
-  <!-- 03. INSTAGRAM -->
+  <!-- 03. INSTAGRAM — live feed via Behold.so (free plan) -->
+  <!--
+    SETUP (one-time, ~5 min):
+    1. Go to behold.so → sign up → connect @gild.hq Instagram account
+    2. Create a widget → set to Grid, Square, 3 columns
+    3. Copy your Widget ID (looks like: abc123def456...)
+    4. Replace BEHOLD_WIDGET_ID below with your actual ID
+    5. The feed auto-updates with every new post — no code changes needed
+  -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
-    <div class="ig-content">
-      <p class="text-eyebrow ig-eyebrow" style="color: var(--color-fg-subtle);">FOLLOW ALONG</p>
+    <div class="ig-inner">
 
-      <a
-        href="https://www.instagram.com/gild.hq/"
-        target="_blank"
-        rel="noopener"
-        class="ig-handle-link"
-        aria-label="Follow GILD on Instagram @gild.hq"
-      >
-        <!-- Instagram icon (inline SVG, no library) -->
-        <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-        <span class="text-display-l ig-handle">@gild.hq</span>
-        <span class="ig-arrow">→</span>
-      </a>
-
-      <!-- Instagram feed embeds — paste official embed blockquotes here.
-           How to get embed code: go to any IG post → ⋯ → Embed → copy the blockquote's
-           data-instgrm-permalink URL → replace the PLACEHOLDER values below.
-           Then uncomment the script tag at the bottom of this section.
-
-      <div class="ig-embeds">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/REPLACE_POST_1/" data-instgrm-version="14"></blockquote>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/REPLACE_POST_2/" data-instgrm-version="14"></blockquote>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/REPLACE_POST_3/" data-instgrm-version="14"></blockquote>
+      <!-- Header -->
+      <div class="ig-header">
+        <p class="text-eyebrow ig-eyebrow" style="color: var(--color-fg-subtle);">FOLLOW ALONG</p>
+        <a
+          href="https://www.instagram.com/gild.hq/"
+          target="_blank"
+          rel="noopener"
+          class="ig-handle-link"
+          aria-label="Open @gild.hq on Instagram"
+        >
+          <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span class="text-display-m ig-handle">@gild.hq</span>
+          <span class="ig-arrow">→</span>
+        </a>
       </div>
-      <script async src="//www.instagram.com/embed.js"></script>
-      -->
+
+      <!-- Behold.so live feed — replace BEHOLD_WIDGET_ID with your widget ID from behold.so -->
+      <div class="ig-feed">
+        <div id="behold-widget-BEHOLD_WIDGET_ID"></div>
+      </div>
+
     </div>
   </section>
+
+  <!-- Behold.so widget loader (loads once, handles all behold-widget-* divs on page) -->
+  <script is:inline>
+    (function(d, s, id) {
+      if (d.getElementById(id)) return;
+      var js = d.createElement(s);
+      js.id = id;
+      js.async = true;
+      js.src = 'https://w.behold.so/widget.js';
+      d.head.appendChild(js);
+    }(document, 'script', 'behold-widget-js'));
+  </script>
 
 
 </Layout>
@@ -210,26 +237,32 @@ import '../styles/global.css';
   /* ── INSTAGRAM ── */
   .ig-section {
     padding: 96px 24px;
-    display: flex;
-    justify-content: center;
   }
 
-  .ig-content {
+  .ig-inner {
+    max-width: 935px; /* Instagram profile grid max-width */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .ig-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 16px;
+    text-align: center;
   }
 
   .ig-eyebrow {
     margin: 0;
-    text-align: center;
   }
 
   .ig-handle-link {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     text-decoration: none;
     color: var(--color-fg);
     transition: color var(--duration-hover) var(--ease-entrance);
@@ -240,10 +273,10 @@ import '../styles/global.css';
   }
 
   .ig-icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
-    opacity: 0.7;
+    opacity: 0.65;
     transition: opacity var(--duration-hover) var(--ease-entrance);
   }
 
@@ -256,11 +289,12 @@ import '../styles/global.css';
   }
 
   .ig-arrow {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 300;
     line-height: 1;
-    opacity: 0.5;
-    transition: opacity var(--duration-hover) var(--ease-entrance), transform var(--duration-hover) var(--ease-entrance);
+    opacity: 0.45;
+    transition: opacity var(--duration-hover) var(--ease-entrance),
+                transform var(--duration-hover) var(--ease-entrance);
   }
 
   .ig-handle-link:hover .ig-arrow {
@@ -268,22 +302,23 @@ import '../styles/global.css';
     transform: translateX(4px);
   }
 
+  /* Behold.so widget container — let the widget control its own grid */
+  .ig-feed {
+    width: 100%;
+  }
+
   @media (min-width: 768px) {
     .ig-section {
-      padding: 160px 64px;
+      padding: 128px 64px;
     }
 
-    .ig-content {
-      gap: 40px;
+    .ig-inner {
+      gap: 56px;
     }
 
     .ig-icon {
-      width: 56px;
-      height: 56px;
-    }
-
-    .ig-arrow {
-      font-size: 48px;
+      width: 40px;
+      height: 40px;
     }
   }
 
