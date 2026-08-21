@@ -83,6 +83,15 @@ const instagramPosts = [
 
   <!-- 03. INSTAGRAM — latest posts from @gild.hq -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
+    <a class="ig-label" href="https://www.instagram.com/gild.hq/" target="_blank" rel="noopener" aria-label="Open @gild.hq on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.6" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>Instagram</span>
+      <span class="ig-handle">@gild.hq</span>
+    </a>
     <div class="ig-grid">
       {instagramPosts.map((post) => (
         <a href={post.url} target="_blank" rel="noopener" class="ig-post" aria-label="Open GILD post on Instagram">
@@ -197,6 +206,32 @@ const instagramPosts = [
   .ig-section {
     padding-top: 8px;
     padding-bottom: 0;
+    padding-inline: 24px;
+    box-sizing: border-box;
+  }
+
+  .ig-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    margin: 0 auto 16px;
+    color: var(--color-fg);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .ig-label svg {
+    width: 19px;
+    height: 19px;
+    color: var(--color-accent);
+  }
+
+  .ig-handle {
+    color: var(--color-fg-muted);
+    font-weight: 400;
   }
 
   .ig-grid {
@@ -230,6 +265,7 @@ const instagramPosts = [
   @media (min-width: 768px) {
     .ig-section {
       padding-top: 12px;
+      padding-inline: 32px;
     }
   }
 
