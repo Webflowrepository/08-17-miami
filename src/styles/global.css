@@ -3,9 +3,6 @@
    Import order: Fonts → Tailwind → Theme tokens
    ============================================================ */
 
-/* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap');
-
 /* ── Tailwind v4 base ── */
 @import "tailwindcss";
 

@@ -23,9 +23,9 @@
   --color-rule: oklch(0.30 0.02 235);
 
   /* ── Typography families ── */
-  --font-display: "Montserrat", sans-serif;
-  --font-body: "Montserrat", sans-serif;
-  --font-mono: "Montserrat", sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   /* ── Spacing baseline (8px multiples) ── */
   --spacing-xs: 8px;
