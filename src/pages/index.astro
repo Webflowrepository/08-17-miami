@@ -4,21 +4,11 @@
  */
 
 import Layout from '../layouts/Layout.astro';
-import editionData from '../content/edition-no-01.json';
-
 import '../styles/global.css';
 
 // Gallery photos kept here — uncomment Gallery below to restore the event photo grid.
 // import Gallery from '../components/Gallery.astro';
 
-import { readdirSync } from 'node:fs';
-import { resolve } from 'node:path';
-const eventDir = resolve('./public/assets/photos/event');
-const igPhotos = readdirSync(eventDir)
-  .filter(f => /\.(jpe?g|png|webp)$/i.test(f))
-  .sort()
-  .slice(0, 12)
-  .map(f => `/assets/photos/event/${f}`);
 ---
 
 <Layout
@@ -102,17 +92,8 @@ const igPhotos = readdirSync(eventDir)
       </div>
     </div>
 
-    <!--
-      Local event images render first so the section stays useful without the API.
-      The client script below replaces them with the latest @gild.hq media when
-      /api/ig-feed has been configured in Cloudflare Pages.
-    -->
     <div class="ig-feed" data-ig-feed aria-live="polite">
-      {igPhotos.map(src => (
-        <a href="https://www.instagram.com/gild.hq/" target="_blank" rel="noopener" class="ig-post" aria-label="GILD on Instagram">
-          <img src={src} alt="GILD Miami AI Forum" loading="lazy" decoding="async" />
-        </a>
-      ))}
+      <p class="ig-feed-status text-body-s">Loading the latest posts from Instagram…</p>
     </div>
 
   </section>
@@ -275,6 +256,14 @@ const igPhotos = readdirSync(eventDir)
     margin: 0 auto;
   }
 
+  .ig-feed-status {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--color-fg-muted);
+  }
+
   .ig-post {
     display: block;
     aspect-ratio: 1 / 1;
@@ -297,7 +286,7 @@ const igPhotos = readdirSync(eventDir)
 
   @media (min-width: 768px) {
     .ig-section {
-      padding-top: 32px;
+      padding-top: 12px;
     }
 
     .ig-profile {
@@ -384,9 +373,9 @@ const igPhotos = readdirSync(eventDir)
   /* ── Mobile: fit hero in 100vh ── */
   @media (max-width: 767px) {
     .hero-section {
-      min-height: 85vh;
-      min-height: 85dvh;
-      padding: 48px 20px;
+      min-height: 65vh;
+      min-height: 65dvh;
+      padding: 36px 20px;
     }
 
     .hero-top {
@@ -454,13 +443,23 @@ const igPhotos = readdirSync(eventDir)
     const feed = document.querySelector('[data-ig-feed]');
     if (!feed) return;
 
+    const showFeedStatus = (message: string) => {
+      const status = document.createElement('p');
+      status.className = 'ig-feed-status text-body-s';
+      status.textContent = message;
+      feed.replaceChildren(status);
+    };
+
     fetch('/api/ig-feed')
       .then((response) => {
         if (!response.ok) throw new Error('Instagram feed unavailable');
         return response.json();
       })
       .then(({ posts }) => {
-        if (!Array.isArray(posts) || posts.length === 0) return;
+        if (!Array.isArray(posts) || posts.length === 0) {
+          showFeedStatus('Latest Instagram posts are unavailable right now.');
+          return;
+        }
 
         const fragment = document.createDocumentFragment();
 
@@ -486,10 +485,12 @@ const igPhotos = readdirSync(eventDir)
 
         if (fragment.childNodes.length > 0) {
           feed.replaceChildren(fragment);
+        } else {
+          showFeedStatus('Latest Instagram posts are unavailable right now.');
         }
       })
       .catch(() => {
-        // Keep the server-rendered event gallery as the graceful fallback.
+        showFeedStatus('Latest Instagram posts are unavailable right now.');
       });
   });
 </script>
