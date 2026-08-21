@@ -91,10 +91,13 @@ const instagramPosts = [
       ))}
     </div>
     <div class="ig-cta">
-      <span>More from the room</span>
-      <span class="ig-cta-arrow" aria-hidden="true">→</span>
-      <a href="https://www.instagram.com/gild.hq/" target="_blank" rel="noopener" aria-label="Open @gild.hq on Instagram">
-        @gild.hq
+      <p class="ig-cta-copy">More from the room</p>
+      <a class="ig-logo-cta" href="https://www.instagram.com/gild.hq/" target="_blank" rel="noopener" aria-label="Open @gild.hq on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.6" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+        </svg>
       </a>
     </div>
   </section>
@@ -227,28 +230,40 @@ const instagramPosts = [
 
   .ig-cta {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 9px;
+    gap: 10px;
     padding-top: 28px;
     margin: 0;
+  }
+
+  .ig-cta-copy {
+    margin: 0;
     color: var(--color-fg);
-    font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-    font-weight: 500;
-    letter-spacing: -0.025em;
+    font-family: var(--font-body);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 300;
+    letter-spacing: 0.01em;
   }
 
-  .ig-cta-arrow {
+  .ig-logo-cta {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
     color: var(--color-accent);
+    transition: color var(--duration-hover) var(--ease-entrance), transform var(--duration-hover) var(--ease-entrance);
   }
 
-  .ig-cta a {
+  .ig-logo-cta svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ig-logo-cta:hover {
     color: var(--color-fg);
-    text-decoration: none;
-  }
-
-  .ig-cta a:hover {
-    color: var(--color-accent);
+    transform: translateY(-2px);
   }
 
   .ig-grid {
