@@ -71,12 +71,15 @@ import '../styles/global.css';
 
   <!-- 03. INSTAGRAM — official live profile embed -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
-    <iframe
-      class="ig-embed"
-      src="https://www.instagram.com/gild.hq/embed/"
-      title="Latest posts from GILD on Instagram"
-      loading="lazy"
-    ></iframe>
+    <div class="ig-feed-window">
+      <iframe
+        class="ig-embed"
+        src="https://www.instagram.com/gild.hq/embed/"
+        title="Latest posts from GILD on Instagram"
+        loading="lazy"
+        scrolling="no"
+      ></iframe>
+    </div>
   </section>
 
 
@@ -186,14 +189,21 @@ import '../styles/global.css';
     padding-bottom: 0;
   }
 
+  .ig-feed-window {
+    width: 100%;
+    max-width: 935px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
   .ig-embed {
     display: block;
     width: 100%;
-    max-width: 935px;
-    height: clamp(560px, 72vh, 800px);
-    margin: 0 auto;
+    height: calc(100% + 156px);
+    transform: translateY(-156px);
     border: 0;
-    background: #fff;
   }
 
 
@@ -336,6 +346,6 @@ import '../styles/global.css';
       delay: 0.4,
     });
 
-    animateFadeUp('.ig-section', '.ig-embed');
+    animateFadeUp('.ig-section', '.ig-feed-window');
   });
 </script>
