@@ -1,0 +1,38 @@
+---
+/**
+ * /editions/no-01 — Edition No. 01 Recap Page
+ * All sections rendered including Gallery.
+ */
+
+import Layout from '../../../layouts/Layout.astro';
+import Gallery from '../../../components/Gallery.astro';
+import editionData from '../../../content/edition-no-01.json';
+import { EditionSchema } from '../../../content/content-schema';
+
+/* Validate content at build time */
+const edition = EditionSchema.parse(editionData);
+
+import '../../../styles/global.css';
+---
+
+<Layout
+  title={edition.meta.title}
+  description={edition.meta.tagline}
+>
+  <!-- ═══ GALLERY ═══ -->
+  <Gallery
+    eyebrow={edition.gallery.eyebrow}
+    photos={edition.gallery.photos}
+  />
+</Layout>
+
+
+
+<script>
+  import { initLenis } from '../../../lib/lenis-init';
+
+  /* Initialize Lenis smooth scroll for this page only */
+  document.addEventListener('DOMContentLoaded', () => {
+    initLenis();
+  });
+</script>

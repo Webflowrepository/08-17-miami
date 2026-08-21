@@ -1,0 +1,94 @@
+---
+/**
+ * Signals.astro — Three key conversation signals
+ * Layout: Single column, max-width 720px
+ * Typography: Signal number in accent teal, title in eyebrow caps, body in Body L
+ * Stagger: 60ms between signals
+ */
+
+interface Signal {
+  number: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  signals: Signal[];
+}
+
+const { signals } = Astro.props;
+---
+
+<section
+  id="signals"
+  class="signals-section"
+  aria-label="Signals from the room"
+>
+  <div class="signals-content">
+    {signals.map((signal) => (
+      <article class="signal-item">
+        <span class="text-display-m signal-number" style={`color: var(--color-accent);`}>
+          {signal.number}
+        </span>
+        <h2 class="text-eyebrow signal-title" style={`color: var(--color-fg);`}>
+          {signal.title}
+        </h2>
+        <p class="text-body-l" style={`color: var(--color-fg-muted);`}>
+          {signal.body}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .signals-section {
+    padding: 96px 24px;
+  }
+
+  .signals-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .signal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .signal-number {
+    display: block;
+  }
+
+  .signal-title {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .signals-section {
+      padding: 192px 64px;
+    }
+
+    .signals-content {
+      gap: 64px;
+    }
+
+    .signal-item {
+      gap: 24px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.signals-section', '.signal-item', {
+      stagger: 0.06,
+    });
+  });
+</script>

@@ -1,0 +1,504 @@
+﻿{
+    "meta":  {
+                 "editionNumber":  "No. 01",
+                 "title":  "The GILD Edition Â· No. 01",
+                 "tagline":  "A private room, carefully preserved.",
+                 "eventName":  "Founder Community Dinner",
+                 "location":  "Austin",
+                 "date":  "April 2026",
+                 "organizer":  "GILD",
+                 "sponsor":  {
+                                 "name":  "Tecla",
+                                 "logoSrc":  "/assets/sponsors/tecla-placeholder.svg",
+                                 "url":  "https://tecla.io"
+                             }
+             },
+    "cover":  {
+                  "eyebrow":  "THE GILD EDITION Â· NO. 01",
+                  "titleLines":  [
+                                     "A private room,",
+                                     "carefully preserved."
+                                 ],
+                  "metadataLines":  [
+                                        "Founder Community Dinner",
+                                        "Austin Â· April 2026"
+                                    ],
+                  "sponsorLine":  "Made possible with Tecla.",
+                  "ctaLabel":  "Enter the edition â†’",
+                  "photoSrc":  "/assets/photos/event/DSC00007.jpg",
+                  "photoAlt":  "A long dinner table set with candles before guests arrived."
+              },
+    "noteFromTheRoom":  [
+                            "The conversation ended close to midnight.",
+                            "This is what could be carried out of the room",
+                            "without breaking what was said inside it."
+                        ],
+    "signals":  [
+                    {
+                        "number":  "01",
+                        "title":  "THE PRICING QUESTION KEPT RETURNING.",
+                        "body":  "Several founders returned to the same pricing question: how to move beyond seat-based models when customers increasingly expect outcomes, not access. The conversation moved past frameworks. It became practical â€” and uneasy."
+                    },
+                    {
+                        "number":  "02",
+                        "title":  "OPERATIONAL AI HAS A QUIET ADOPTION CURVE.",
+                        "body":  "The room agreed: the loud half of the AI conversation has moved past most operators. What remains is unsexy integration work, hiring decisions that look mundane on paper, and slow internal trust-building. Several described this as the actual work of 2026."
+                    },
+                    {
+                        "number":  "03",
+                        "title":  "SEVERANCE IS NOW A BRAND EVENT.",
+                        "body":  "A pattern emerged in how the room described senior departures: post-LinkedIn, every meaningful exit becomes a 90-day public moment. The discussion turned to severance design, framing language, and the cost of getting it wrong."
+                    }
+                ],
+    "briefing":  {
+                     "eyebrow":  "THE BRIEFING",
+                     "title":  "A more complete record.",
+                     "body":  "The full briefing extends what\u0027s above. Written in the same spirit. Sent only to those who were in the room. Six pages.",
+                     "ctaLabel":  "Download the briefing (PDF) â†’",
+                     "ctaUrl":  "/editions/no-01/briefing"
+                 },
+    "gallery":  {
+                    "eyebrow":  "",
+                    "photos":  [
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8605.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8606.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8613.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8614.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8617.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8623.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8626.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8629.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8630.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8632.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8637.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8640.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8644.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8646.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8660.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8671.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8674.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8680.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8681.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8704.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8711.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8715.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8732.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8738.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8742.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8744.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8749.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8753.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8759.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8766.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8771.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8772.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8773.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8776.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8778.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8793.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8795.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8801.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8804.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8811.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8814.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8818.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8837.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8845.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8848.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8852.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8857.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8858.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8862.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8866.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCF8868.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1087.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1088.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1089.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1091.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1098.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1109.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1114.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1118.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1122.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1123.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1127.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1130.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1144.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1148.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1149.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1163.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1167.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1174.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1175.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1180.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1188.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1190.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1193.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1200.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1202.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1211.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1212.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1214.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1217.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1219.jpeg"
+                                   },
+                                   {
+                                       "alt":  "GILD Event Photo",
+                                       "aspect":  "wide",
+                                       "src":  "/assets/photos/event/DSCS1226.jpeg"
+                                   }
+                               ]
+                },
+    "roomInAggregate":  {
+                            "eyebrow":  "THE ROOM, IN AGGREGATE",
+                            "lines":  [
+                                          "Thirty-five operators.",
+                                          "Twelve industries.",
+                                          "Four hours.",
+                                          "One evening."
+                                      ]
+                        },
+    "voices":  [
+                   {
+                       "quote":  "The most useful conversations I\u0027ve had this year happened in rooms exactly this size.",
+                       "attribution":  "SARAH â€” FOUNDER"
+                   },
+                   {
+                       "quote":  "I came expecting a panel. I got a conversation. That\u0027s the difference.",
+                       "attribution":  "DAVID â€” CTO"
+                   },
+                   {
+                       "quote":  "You can feel when a room is curated. This one was.",
+                       "attribution":  "MARÃA â€” CEO"
+                   }
+               ],
+    "shareCaption":  "A small dinner with founders and operators in Austin. Some of the most useful conversations of the year happen in rooms like this. Grateful to GILD and Tecla for hosting.",
+    "colophon":  {
+                     "photographerName":  "Wynn Myers",
+                     "photoRemovalEmail":  "remove@gild.community",
+                     "partnershipsEmail":  "partnerships@gild.community"
+                 }
+}

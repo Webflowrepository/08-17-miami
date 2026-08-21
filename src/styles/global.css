@@ -1,0 +1,194 @@
+/* ============================================================
+   GILD Preview — Global Styles
+   Import order: Fonts → Tailwind → Theme tokens
+   ============================================================ */
+
+/* ── Fonts (Inter Variable with optical sizing + JetBrains Mono) ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght,opsz@100..900,14..32&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Tailwind v4 base ── */
+@import "tailwindcss";
+
+/* ── Theme tokens ── */
+@import "./theme.css";
+
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   Body — atmospheric background + grain overlay
+   Source: VISUAL_DIRECTION.md § "Atmospheric body background"
+   ============================================================ */
+
+body {
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11";
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-fg);
+  background-color: var(--color-bg-base);
+  background-image: radial-gradient(
+    ellipse 140% 100% at 20% 95%,
+    oklch(0.28 0.03 235) 0%,
+    var(--color-bg-base) 45%,
+    var(--color-bg-deep) 100%
+  );
+  min-height: 100vh;
+}
+
+/* Grain noise overlay — global, all pages */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+  opacity: 0.4;
+}
+
+/* Content sits above grain */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   Base Typography Utilities
+   ============================================================ */
+
+/* Display XL — cover title */
+.text-display-xl {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+
+/* Display L — section H2 */
+.text-display-l {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+/* Display M — sub-headers */
+.text-display-m {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Body L — lead */
+.text-body-l {
+  font-size: 18px;
+  font-weight: 380;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+/* Body M — default (set on body) */
+.text-body-m {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+}
+
+/* Body S */
+.text-body-s {
+  font-size: 13px;
+  font-weight: 420;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+/* Eyebrow caps */
+.text-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+
+/* Mono */
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+/* ── Desktop overrides (≥768px) ── */
+@media (min-width: 768px) {
+  .text-display-xl {
+    font-size: 96px;
+  }
+  .text-display-l {
+    font-size: 56px;
+  }
+  .text-display-m {
+    font-size: 32px;
+  }
+  .text-body-l {
+    font-size: 21px;
+  }
+  .text-body-m {
+    font-size: 17px;
+  }
+  .text-body-s {
+    font-size: 14px;
+  }
+  .text-eyebrow {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   Cover Photo Treatment
+   Source: VISUAL_DIRECTION.md § "Cover photo — fade mask"
+   ============================================================ */
+
+.cover-photo {
+  mask-image: linear-gradient(
+    to bottom right,
+    black 60%,
+    transparent 100%
+  );
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

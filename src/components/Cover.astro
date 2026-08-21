@@ -1,0 +1,212 @@
+---
+/**
+ * Cover.astro — Edition cover section
+ * Layout: Desktop 60/40 two-column grid, Mobile stacked
+ * Typography: VISUAL_DIRECTION.md scale
+ * Animation: GSAP fade-up mask reveal on title lines
+ * Photo: Local placeholder with mask gradient
+ */
+
+interface Props {
+  eyebrow: string;
+  titleLines: string[];
+  metadataLines: string[];
+  sponsorLine: string;
+  ctaLabel: string;
+  photoSrc: string;
+  photoAlt: string;
+}
+
+const {
+  eyebrow,
+  titleLines,
+  metadataLines,
+  sponsorLine,
+  ctaLabel,
+  photoSrc,
+  photoAlt,
+} = Astro.props;
+
+/* Check if photo file exists — fallback to solid color placeholder */
+const usePhoto = photoSrc && !photoSrc.startsWith('http');
+---
+
+<section
+  id="cover"
+  class="cover-section"
+  aria-label="Edition cover"
+>
+  <div class="cover-grid">
+    <!-- Left column: Text -->
+    <div class="cover-text">
+      <!-- Eyebrow -->
+      <p class="text-eyebrow cover-meta" style={`color: var(--color-fg-subtle);`}>
+        {eyebrow}
+      </p>
+
+      <!-- Title — each line wrapped for GSAP mask reveal -->
+      <h1 class="text-display-xl cover-title" style={`color: var(--color-fg);`}>
+        {titleLines.map((line) => (
+          <span class="block overflow-hidden">
+            <span class="cover-line block">{line}</span>
+          </span>
+        ))}
+      </h1>
+
+      <!-- Metadata lines -->
+      <div class="cover-metadata">
+        {metadataLines.map((line) => (
+          <p class="text-body-l cover-meta" style={`color: var(--color-fg-muted);`}>
+            {line}
+          </p>
+        ))}
+      </div>
+
+      <!-- Sponsor line -->
+      <p class="text-body-s cover-meta" style={`color: var(--color-fg-muted); font-style: italic;`}>
+        {sponsorLine.split('Tecla').length > 1 ? (
+          <>
+            {sponsorLine.split('Tecla')[0]}<span class="text-mono" style="font-style: normal;">TECLA</span>{sponsorLine.split('Tecla')[1]}
+          </>
+        ) : (
+          sponsorLine
+        )}
+      </p>
+
+      <!-- CTA -->
+      <a
+        href="#note-from-the-room"
+        class="text-body-m cover-meta cover-cta"
+        style={`color: var(--color-fg);`}
+      >
+        {ctaLabel}
+      </a>
+    </div>
+
+    <!-- Right column: Photo -->
+    <div class="cover-photo-wrapper">
+      {usePhoto ? (
+        <img
+          src={photoSrc}
+          alt={photoAlt}
+          class="cover-photo"
+          loading="eager"
+          decoding="async"
+        />
+      ) : (
+        <div class="cover-photo-placeholder" aria-label={photoAlt}>
+          <span class="text-body-s" style={`color: var(--color-fg-subtle);`}>
+            PHOTO PLACEHOLDER
+          </span>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cover-section {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .cover-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .cover-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .cover-title {
+    margin: 0;
+  }
+
+  .cover-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cover-cta {
+    text-decoration: none;
+    transition: color var(--duration-hover) var(--ease-entrance);
+    width: fit-content;
+  }
+
+  .cover-cta:hover {
+    color: var(--color-accent) !important;
+  }
+
+  /* Photo */
+  .cover-photo-wrapper {
+    width: 100%;
+  }
+
+  .cover-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95) saturate(0.92);
+  }
+
+  .cover-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--color-bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Desktop (≥768px) — 60/40 two-column ── */
+  @media (min-width: 768px) {
+    .cover-section {
+      padding-top: 192px;
+      padding-bottom: 192px;
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      gap: 64px;
+      flex-direction: unset;
+    }
+
+    .cover-photo {
+      aspect-ratio: 16 / 9;
+    }
+
+    .cover-photo-placeholder {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
+
+<script>
+  import { animateCoverTitle, animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    /* Title lines — mask reveal with 200ms stagger */
+    animateCoverTitle('.cover-section', '.cover-line');
+
+    /* Metadata, sponsor, CTA — fade up after title */
+    animateFadeUp('.cover-section', '.cover-meta', {
+      stagger: 0.06,
+      delay: 0.5,
+    });
+  });
+</script>

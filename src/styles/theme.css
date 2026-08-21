@@ -1,0 +1,53 @@
+/* ============================================================
+   GILD Preview — Design Tokens (source: VISUAL_DIRECTION.md)
+   CSS-first Tailwind v4 configuration via @theme directive.
+   NO tailwind.config.js/ts — this IS the config.
+   ============================================================ */
+
+@theme {
+  /* ── Backgrounds ── */
+  --color-bg-base: oklch(0.20 0.025 235);       /* #15212B near-black blue-tinted */
+  --color-bg-deep: oklch(0.13 0.02 235);        /* #0B1419 gradient deepest */
+  --color-bg-elevated: oklch(0.25 0.025 235);   /* #1F2D38 cards */
+
+  /* ── Foreground ── */
+  --color-fg: oklch(0.97 0.002 90);             /* #F4F4F2 main text */
+  --color-fg-muted: oklch(0.72 0.005 90);       /* #B5B5AE muted text */
+  --color-fg-subtle: oklch(0.55 0.025 235);     /* #5C6B73 captions, eyebrows */
+
+  /* ── Accent ── */
+  --color-accent: oklch(0.65 0.06 195);         /* #5DA89F teal */
+  --color-accent-dim: oklch(0.50 0.05 195);     /* #437A73 muted teal */
+
+  /* ── Hairline (avoid) ── */
+  --color-rule: oklch(0.30 0.02 235);
+
+  /* ── Typography families ── */
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* ── Spacing baseline (8px multiples) ── */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+  --spacing-3xl: 96px;
+  --spacing-4xl: 128px;
+  --spacing-5xl: 192px;
+  --spacing-6xl: 256px;
+  --spacing-7xl: 320px;
+
+  /* ── Layout ── */
+  --max-content: 720px;
+  --max-gallery: 1280px;
+
+  /* ── Motion ── */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-entrance: 600ms;
+  --duration-hover: 200ms;
+  --duration-lightbox: 300ms;
+  --stagger-list: 60ms;
+}

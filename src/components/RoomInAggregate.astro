@@ -1,0 +1,87 @@
+---
+/**
+ * RoomInAggregate.astro — Short poetic stats about the evening
+ * Layout: Single column, centered, max-width 720px
+ * Typography: Eyebrow label, Display L for each stat line
+ * Same mask-reveal animation pattern as Note from the Room
+ */
+
+interface Props {
+  eyebrow: string;
+  lines: string[];
+}
+
+const { eyebrow, lines } = Astro.props;
+---
+
+<section
+  id="room-in-aggregate"
+  class="aggregate-section"
+  aria-label="The room, in aggregate"
+>
+  <div class="aggregate-content">
+    <p class="text-eyebrow aggregate-item" style={`color: var(--color-fg-subtle);`}>
+      {eyebrow}
+    </p>
+    <div class="aggregate-lines">
+      {lines.map((line) => (
+        <p class="text-display-m aggregate-item" style={`color: var(--color-fg);`}>
+          <span class="block overflow-hidden">
+            <span class="aggregate-line-inner block">{line}</span>
+          </span>
+        </p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .aggregate-section {
+    padding: 96px 24px;
+  }
+
+  .aggregate-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 48px;
+  }
+
+  .aggregate-lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .aggregate-lines p {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .aggregate-section {
+      padding: 192px 64px;
+    }
+
+    .aggregate-content {
+      gap: 64px;
+    }
+
+    .aggregate-lines {
+      gap: 24px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.aggregate-section', '.aggregate-item', {
+      stagger: 0.06,
+    });
+  });
+</script>

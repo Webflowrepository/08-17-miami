@@ -1,0 +1,532 @@
+---
+/**
+ * Gallery.astro — Dense photo grid with slideshow overlay
+ * Click any photo → full-size overlay with prev/next navigation + download
+ * Arrow keys, swipe, and click to navigate between images
+ */
+
+interface GalleryPhoto {
+  src: string;
+  alt: string;
+  aspect: 'portrait' | 'wide' | 'square';
+}
+
+interface Props {
+  eyebrow: string;
+  photos: GalleryPhoto[];
+}
+
+const { eyebrow, photos } = Astro.props;
+---
+
+<section
+  id="gallery"
+  class="gallery-section"
+  aria-label="Photo gallery"
+>
+  <div class="gallery-container">
+    <p class="text-eyebrow gallery-eyebrow" style={`color: var(--color-fg-subtle);`}>
+      {eyebrow}
+    </p>
+
+    <div class="gallery-actions">
+      <button class="download-all-btn" id="download-all-btn" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download all photos</span>
+      </button>
+    </div>
+
+    <div class="gallery-grid">
+      {photos.map((photo, i) => (
+        <figure class="gallery-item" data-index={i}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="gallery-photo"
+            loading={i < 8 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </figure>
+      ))}
+    </div>
+  </div>
+
+  <!-- Slideshow overlay -->
+  <div class="gallery-overlay" id="gallery-overlay" aria-hidden="true">
+    <!-- Close -->
+    <button class="overlay-close" id="overlay-close" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Prev arrow -->
+    <button class="overlay-nav overlay-prev" id="overlay-prev" aria-label="Previous image">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Image -->
+    <img class="overlay-img" id="overlay-img" src="" alt="" />
+
+    <!-- Next arrow -->
+    <button class="overlay-nav overlay-next" id="overlay-next" aria-label="Next image">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Bottom bar: counter + download -->
+    <div class="overlay-bottom">
+      <span class="overlay-counter" id="overlay-counter">1 / {photos.length}</span>
+      <a class="overlay-download" id="overlay-download" href="" download aria-label="Download image">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Pass photos data to JS -->
+  <script is:inline define:vars={{ photosData: photos }}>
+    window.__galleryPhotos = photosData;
+  </script>
+</section>
+
+<style>
+  .gallery-section {
+    padding: 64px 16px;
+    position: relative;
+  }
+
+  .gallery-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .gallery-eyebrow {
+    text-align: center;
+  }
+
+  /* ── Download all button ── */
+  .gallery-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .download-all-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .download-all-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .download-all-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
+  /* ── Dense grid ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+  }
+
+  .gallery-item {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .gallery-photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    filter: brightness(0.92) saturate(0.9);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+
+  .gallery-photo:hover {
+    filter: brightness(1) saturate(1);
+    transform: scale(1.03);
+  }
+
+  /* ── Overlay ── */
+  .gallery-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .gallery-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .overlay-img {
+    max-width: min(85vw, 1200px);
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.25s ease 0.05s, transform 0.25s ease 0.05s;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .gallery-overlay.is-active .overlay-img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Fade transition when changing slides */
+  .overlay-img.is-switching {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  /* ── Close button ── */
+  .overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.2s ease;
+    z-index: 10;
+  }
+
+  .overlay-close:hover {
+    color: #fff;
+  }
+
+  /* ── Nav arrows ── */
+  .overlay-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 14px;
+    border-radius: 50%;
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay-nav:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .overlay-prev {
+    left: 20px;
+  }
+
+  .overlay-next {
+    right: 20px;
+  }
+
+  /* ── Bottom bar ── */
+  .overlay-bottom {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+  }
+
+  .overlay-counter {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  .overlay-download {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .overlay-download:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+  }
+
+  /* ── Responsive grid ── */
+  @media (max-width: 479px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    .gallery-section { padding: 48px 8px; }
+    .overlay-prev { left: 8px; padding: 10px; }
+    .overlay-next { right: 8px; padding: 10px; }
+    .overlay-nav svg { width: 22px; height: 22px; }
+    .overlay-bottom { gap: 12px; }
+    .overlay-download { padding: 8px 16px; font-size: 11px; }
+  }
+
+  @media (min-width: 480px) and (max-width: 767px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .gallery-section { padding: 96px 32px; }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .gallery-section { padding: 96px 48px; }
+  }
+
+  @media (min-width: 1440px) {
+    .gallery-grid {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.gallery-section', '.gallery-item', {
+      stagger: 0.03,
+    });
+
+    const photos = (window as any).__galleryPhotos as { src: string; alt: string }[];
+    if (!photos || !photos.length) return;
+
+    const overlay = document.getElementById('gallery-overlay')!;
+    const overlayImg = document.getElementById('overlay-img') as HTMLImageElement;
+    const overlayDownload = document.getElementById('overlay-download') as HTMLAnchorElement;
+    const overlayClose = document.getElementById('overlay-close')!;
+    const overlayPrev = document.getElementById('overlay-prev')!;
+    const overlayNext = document.getElementById('overlay-next')!;
+    const overlayCounter = document.getElementById('overlay-counter')!;
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function showPhoto(index: number) {
+      currentIndex = index;
+      const photo = photos[currentIndex];
+
+      // Quick fade out
+      overlayImg.classList.add('is-switching');
+
+      setTimeout(() => {
+        overlayImg.src = photo.src;
+        overlayImg.alt = photo.alt;
+        overlayDownload.href = photo.src;
+        overlayDownload.setAttribute('download', photo.src.split('/').pop() || 'photo.jpeg');
+        overlayCounter.textContent = `${currentIndex + 1} / ${photos.length}`;
+
+        // Fade back in once loaded
+        if (overlayImg.complete) {
+          overlayImg.classList.remove('is-switching');
+        } else {
+          overlayImg.onload = () => overlayImg.classList.remove('is-switching');
+        }
+      }, 150);
+    }
+
+    function nextPhoto() {
+      showPhoto((currentIndex + 1) % photos.length);
+    }
+
+    function prevPhoto() {
+      showPhoto((currentIndex - 1 + photos.length) % photos.length);
+    }
+
+    function openOverlay(index: number) {
+      currentIndex = index;
+      const photo = photos[index];
+      overlayImg.src = photo.src;
+      overlayImg.alt = photo.alt;
+      overlayDownload.href = photo.src;
+      overlayDownload.setAttribute('download', photo.src.split('/').pop() || 'photo.jpeg');
+      overlayCounter.textContent = `${index + 1} / ${photos.length}`;
+      overlayImg.classList.remove('is-switching');
+      overlay.classList.add('is-active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('is-active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Click on grid item
+    document.querySelectorAll('.gallery-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const idx = parseInt((item as HTMLElement).dataset.index || '0', 10);
+        openOverlay(idx);
+      });
+    });
+
+    // Navigation
+    overlayNext.addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
+    overlayPrev.addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
+    overlayClose.addEventListener('click', closeOverlay);
+
+    // Click backdrop to close (but not on image or controls)
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeOverlay();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('is-active')) return;
+      if (e.key === 'Escape') closeOverlay();
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextPhoto();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevPhoto();
+    });
+
+    // Touch swipe
+    overlay.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    overlay.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextPhoto();
+        else prevPhoto();
+      }
+    }, { passive: true });
+
+    // Download All
+    const downloadAllBtn = document.getElementById('download-all-btn');
+    if (downloadAllBtn) {
+      downloadAllBtn.addEventListener('click', async () => {
+        const btnSpan = downloadAllBtn.querySelector('span');
+        const originalText = btnSpan?.textContent || '';
+        downloadAllBtn.setAttribute('disabled', 'true');
+        if (btnSpan) btnSpan.textContent = 'Preparing...';
+
+        try {
+          // Load JSZip dynamically
+          const JSZipModule = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
+          const JSZip = JSZipModule.default;
+          const zip = new JSZip();
+
+          // Fetch all photos in parallel
+          let completed = 0;
+          const total = photos.length;
+
+          const promises = photos.map(async (photo: { src: string }) => {
+            try {
+              const resp = await fetch(photo.src);
+              const blob = await resp.blob();
+              const filename = photo.src.split('/').pop() || `photo-${completed}.jpeg`;
+              zip.file(filename, blob);
+              completed++;
+              if (btnSpan) btnSpan.textContent = `${completed} / ${total}`;
+            } catch {
+              completed++;
+            }
+          });
+
+          await Promise.all(promises);
+          if (btnSpan) btnSpan.textContent = 'Zipping...';
+
+          const content = await zip.generateAsync({ type: 'blob' });
+          const url = URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'GILD-Event-Photos.zip';
+          a.click();
+          URL.revokeObjectURL(url);
+        } catch (err) {
+          console.error('Download failed:', err);
+        }
+
+        downloadAllBtn.removeAttribute('disabled');
+        if (btnSpan) btnSpan.textContent = originalText;
+      });
+    }
+  });
+</script>

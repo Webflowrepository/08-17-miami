@@ -1,0 +1,64 @@
+---
+/**
+ * NoteFromTheRoom.astro — Poetic intro section
+ * Layout: Single column, centered, max-width 720px
+ * Typography: Display M for each line, staggered fade-up
+ * Source: VISUAL_DIRECTION.md — separation by spacing only
+ */
+
+interface Props {
+  lines: string[];
+}
+
+const { lines } = Astro.props;
+---
+
+<section
+  id="note-from-the-room"
+  class="note-section"
+  aria-label="Note from the room"
+>
+  <div class="note-content">
+    {lines.map((line) => (
+      <p class="text-display-m note-line" style={`color: var(--color-fg);`}>
+        <span class="block overflow-hidden">
+          <span class="note-line-inner block">{line}</span>
+        </span>
+      </p>
+    ))}
+  </div>
+</section>
+
+<style>
+  .note-section {
+    padding: 96px 24px;
+  }
+
+  .note-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .note-section {
+      padding: 192px 64px;
+    }
+
+    .note-content {
+      gap: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.note-section', '.note-line-inner', {
+      stagger: 0.2,
+    });
+  });
+</script>

@@ -1,0 +1,88 @@
+---
+/**
+ * Briefing.astro — CTA to download the full briefing PDF
+ * Layout: Single column, max-width 720px
+ * Typography: Eyebrow, Display L title, Body L description, CTA link
+ */
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  ctaLabel: string;
+  ctaUrl: string;
+}
+
+const { eyebrow, title, body, ctaLabel, ctaUrl } = Astro.props;
+---
+
+<section
+  id="briefing"
+  class="briefing-section"
+  aria-label="The briefing"
+>
+  <div class="briefing-content">
+    <p class="text-eyebrow briefing-item" style={`color: var(--color-fg-subtle);`}>
+      {eyebrow}
+    </p>
+    <h2 class="text-display-m briefing-item" style={`color: var(--color-fg);`}>
+      {title}
+    </h2>
+    <p class="text-body-l briefing-item" style={`color: var(--color-fg-muted);`}>
+      {body}
+    </p>
+    <a
+      href={ctaUrl}
+      class="text-body-m briefing-item briefing-cta"
+      style={`color: var(--color-fg);`}
+    >
+      {ctaLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .briefing-section {
+    padding: 96px 24px;
+  }
+
+  .briefing-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .briefing-cta {
+    text-decoration: none;
+    transition: color var(--duration-hover) var(--ease-entrance);
+    width: fit-content;
+  }
+
+  .briefing-cta:hover {
+    color: var(--color-accent) !important;
+  }
+
+  @media (min-width: 768px) {
+    .briefing-section {
+      padding: 192px 64px;
+    }
+
+    .briefing-content {
+      gap: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.briefing-section', '.briefing-item', {
+      stagger: 0.06,
+    });
+  });
+</script>

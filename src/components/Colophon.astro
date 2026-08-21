@@ -1,0 +1,134 @@
+---
+/**
+ * Colophon.astro — Credits, contact, and legal
+ * Layout: Single column, max-width 720px
+ * Typography: Body S, Mono for technical details
+ * Only mailto links per CLAUDE.md — no contact forms
+ * Sponsor line italic per VISUAL_DIRECTION.md rules
+ */
+
+interface Props {
+  photographerName: string;
+  photoRemovalEmail: string;
+  partnershipsEmail: string;
+  sponsorName: string;
+  shareCaption: string;
+}
+
+const {
+  photographerName,
+  photoRemovalEmail,
+  partnershipsEmail,
+  sponsorName,
+  shareCaption,
+} = Astro.props;
+---
+
+<section
+  id="colophon"
+  class="colophon-section"
+  aria-label="Colophon"
+>
+  <div class="colophon-content">
+    <div class="colophon-block colophon-item">
+      <p class="text-body-s colophon-label" style={`color: var(--color-fg-subtle); font-style: italic;`}>
+        Photography
+      </p>
+      <p class="text-body-s" style={`color: var(--color-fg-muted);`}>
+        {photographerName}
+      </p>
+    </div>
+
+    <div class="colophon-block colophon-item">
+      <p class="text-body-s colophon-label" style={`color: var(--color-fg-subtle); font-style: italic;`}>
+        Sponsor
+      </p>
+      <p class="text-body-s" style={`color: var(--color-fg-muted);`}>
+        <span class="text-mono" style="font-style: normal;">{sponsorName.toUpperCase()}</span>
+      </p>
+    </div>
+
+    <div class="colophon-block colophon-item">
+      <p class="text-body-s colophon-label" style={`color: var(--color-fg-subtle); font-style: italic;`}>
+        Share text
+      </p>
+      <p class="text-body-s" style={`color: var(--color-fg-muted);`}>
+        {shareCaption}
+      </p>
+    </div>
+
+    <div class="colophon-block colophon-item">
+      <p class="text-body-s colophon-label" style={`color: var(--color-fg-subtle); font-style: italic;`}>
+        Contact
+      </p>
+      <p class="text-mono" style={`color: var(--color-fg-muted);`}>
+        <a href={`mailto:${photoRemovalEmail}`} class="colophon-link">{photoRemovalEmail}</a>
+        <span style={`color: var(--color-fg-subtle);`}> · photo removal</span>
+      </p>
+      <p class="text-mono" style={`color: var(--color-fg-muted);`}>
+        <a href={`mailto:${partnershipsEmail}`} class="colophon-link">{partnershipsEmail}</a>
+        <span style={`color: var(--color-fg-subtle);`}> · partnerships</span>
+      </p>
+    </div>
+
+    <div class="colophon-block colophon-item">
+      <p class="text-mono" style={`color: var(--color-fg-subtle);`}>
+        © GILD {new Date().getFullYear()}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .colophon-section {
+    padding: 96px 24px;
+  }
+
+  .colophon-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .colophon-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .colophon-block p {
+    margin: 0;
+  }
+
+  .colophon-link {
+    color: var(--color-fg-muted);
+    text-decoration: none;
+    transition: color var(--duration-hover) var(--ease-entrance);
+  }
+
+  .colophon-link:hover {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    .colophon-section {
+      padding: 192px 64px;
+    }
+
+    .colophon-content {
+      gap: 40px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.colophon-section', '.colophon-item', {
+      stagger: 0.06,
+    });
+  });
+</script>

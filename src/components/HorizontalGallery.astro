@@ -1,0 +1,388 @@
+---
+/**
+ * HorizontalGallery.astro — Horizontal scroll gallery pinned via GSAP ScrollTrigger.
+ * Desktop: vertical scroll drives horizontal translation (scrub).
+ * Mobile (<768px): native horizontal overflow with scroll-snap.
+ *
+ * Props:
+ *   images: { src, alt, caption? }[]
+ *   scrollMultiplier?: number (default 1.2)
+ */
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  scrollMultiplier?: number;
+}
+
+const { images, scrollMultiplier = 0.8 } = Astro.props;
+---
+
+<section
+  class="hgallery-section"
+  data-scroll-multiplier={scrollMultiplier}
+  aria-label="Photo gallery"
+>
+  <div class="hgallery-pin">
+    <div class="hgallery-viewport">
+      <div class="hgallery-track">
+        {images.map((img, i) => (
+          <figure class="hgallery-item">
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="hgallery-photo"
+              loading={i < 2 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+            {img.caption && (
+              <figcaption class="hgallery-caption text-body-s">
+                <span class="hgallery-caption-num">{String(i + 1).padStart(2, '0')}</span>
+                {img.caption}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    </div>
+    <!-- Progress bar + counter -->
+    <div class="hgallery-progress">
+      <div class="hgallery-progress-bar">
+        <div class="hgallery-progress-fill"></div>
+      </div>
+      <span class="hgallery-counter text-body-s">
+        01 / {String(images.length).padStart(2, '0')}
+      </span>
+    </div>
+    <!-- Scroll hint — appears when pinned, fades out on interaction -->
+    <div class="hgallery-hint">
+      <span class="hgallery-hint-text text-body-s">Keep scrolling</span>
+      <svg class="hgallery-hint-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section: height set by JS on desktop ── */
+  .hgallery-section {
+    position: relative;
+    width: 100%;
+  }
+
+  /* ── Pin container ── */
+  .hgallery-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ── Viewport ── */
+  .hgallery-viewport {
+    width: 100%;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Track ── */
+  .hgallery-track {
+    display: flex;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    padding-left: clamp(2rem, 6vw, 6rem);
+    padding-right: clamp(2rem, 6vw, 6rem);
+    will-change: transform;
+    align-items: center;
+  }
+
+  /* ── Item ── */
+  .hgallery-item {
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hgallery-photo {
+    height: 55vh;
+    width: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+    filter: brightness(0.95) saturate(0.92);
+    transition: filter 0.4s ease;
+  }
+
+  .hgallery-photo:hover {
+    filter: brightness(1) saturate(1);
+  }
+
+  /* ── Caption ── */
+  .hgallery-caption {
+    color: var(--color-fg-subtle);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hgallery-caption-num {
+    color: var(--color-fg-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Progress ── */
+  .hgallery-progress {
+    position: absolute;
+    bottom: 32px;
+    left: clamp(2rem, 6vw, 6rem);
+    right: clamp(2rem, 6vw, 6rem);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .hgallery-progress.is-visible {
+    opacity: 1;
+  }
+
+  .hgallery-progress-bar {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border, rgba(255,255,255,0.1));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hgallery-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--color-fg-muted, rgba(255,255,255,0.5));
+    transition: none;
+  }
+
+  .hgallery-counter {
+    color: var(--color-fg-subtle);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  /* ── Scroll hint ── */
+  .hgallery-hint {
+    position: absolute;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hgallery-hint.is-hidden {
+    opacity: 0;
+  }
+
+  .hgallery-hint-text {
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .hgallery-hint-arrow {
+    color: rgba(255, 255, 255, 0.8);
+    animation: nudge-right 1.5s ease-in-out infinite;
+    width: 16px;
+    height: 16px;
+  }
+
+  @keyframes nudge-right {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* ── Mobile: native horizontal scroll with snap ── */
+  @media (max-width: 767px) {
+    .hgallery-section {
+      /* Override any JS-set height */
+      height: auto !important;
+    }
+
+    .hgallery-pin {
+      position: relative;
+      height: auto;
+    }
+
+    .hgallery-viewport {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .hgallery-track {
+      will-change: auto;
+    }
+
+    .hgallery-item {
+      scroll-snap-align: center;
+    }
+
+    .hgallery-photo {
+      height: 50vh;
+    }
+
+    .hgallery-progress {
+      display: none;
+    }
+
+    .hgallery-hint {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector<HTMLElement>('.hgallery-section');
+    if (!section) return;
+
+    const pin = section.querySelector<HTMLElement>('.hgallery-pin');
+    const track = section.querySelector<HTMLElement>('.hgallery-track');
+    const progressFill = section.querySelector<HTMLElement>('.hgallery-progress-fill');
+    const progressContainer = section.querySelector<HTMLElement>('.hgallery-progress');
+    const counter = section.querySelector<HTMLElement>('.hgallery-counter');
+    const hint = section.querySelector<HTMLElement>('.hgallery-hint');
+    if (!pin || !track) return;
+
+    const multiplier = parseFloat(section.dataset.scrollMultiplier || '1.2');
+    const images = track.querySelectorAll<HTMLImageElement>('.hgallery-photo');
+    const totalImages = images.length;
+
+    // Wait for all images to load/decode before measuring
+    const imagePromises = Array.from(images).map((img) => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+      return img.decode().catch(() => {
+        // Fallback: wait for load event
+        return new Promise<void>((resolve) => {
+          img.addEventListener('load', () => resolve(), { once: true });
+          img.addEventListener('error', () => resolve(), { once: true });
+        });
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      // Use gsap.matchMedia for responsive handling
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 768px)', () => {
+        // Calculate distance
+        const distance = track.scrollWidth - window.innerWidth;
+        if (distance <= 0) return;
+
+        // Set section height dynamically
+        const sectionHeight = window.innerHeight + distance * multiplier;
+        section.style.height = `${sectionHeight}px`;
+
+        // Show progress
+        if (progressContainer) progressContainer.classList.add('is-visible');
+
+        // Hint is visible by default via CSS; JS only hides it
+        let hintDismissed = false;
+
+        const tween = gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${(track.scrollWidth - window.innerWidth) * multiplier}`,
+            scrub: 0.4,
+            pin: pin,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              // Dismiss hint after user scrolls a bit
+              if (!hintDismissed && self.progress > 0.15 && hint) {
+                hint.classList.add('is-hidden');
+                hintDismissed = true;
+              }
+
+              // Update progress bar
+              if (progressFill) {
+                progressFill.style.width = `${self.progress * 100}%`;
+              }
+
+              // Update counter — find which image is most centered
+              if (counter) {
+                const viewportCenter = window.innerWidth / 2;
+                let closestIdx = 0;
+                let closestDist = Infinity;
+
+                images.forEach((img, i) => {
+                  const rect = img.getBoundingClientRect();
+                  const imgCenter = rect.left + rect.width / 2;
+                  const dist = Math.abs(imgCenter - viewportCenter);
+                  if (dist < closestDist) {
+                    closestDist = dist;
+                    closestIdx = i;
+                  }
+                });
+
+                counter.textContent = `${String(closestIdx + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
+              }
+            },
+          },
+        });
+
+        // Cleanup function for matchMedia
+        return () => {
+          tween.kill();
+          section.style.height = '';
+          if (progressContainer) progressContainer.classList.remove('is-visible');
+          if (hint) hint.classList.remove('is-hidden');
+        };
+      });
+
+      // Refresh after setup
+      ScrollTrigger.refresh();
+    });
+  });
+</script>

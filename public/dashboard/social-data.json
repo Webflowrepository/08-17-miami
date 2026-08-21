@@ -1,0 +1,896 @@
+{
+  "lastSyncAt": "2026-08-21T13:39:35.688Z",
+  "mode": "api-ready",
+  "brand": {
+    "name": "GILD",
+    "tagline": "Curated network intelligence",
+    "market": "AI operators, founders and ecosystem leaders"
+  },
+  "channels": [
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "metrics": {
+        "followers": 1016,
+        "posts": 0,
+        "engagementRate": 0,
+        "reach": 0
+      },
+      "handle": "joingild",
+      "url": "https://www.linkedin.com/company/joingild/?viewAsMember=true",
+      "status": "profile_linked",
+      "trend": {
+        "followers": 0,
+        "engagementRate": 0
+      }
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "metrics": {
+        "followers": 80,
+        "posts": 50,
+        "following": 153,
+        "engagementRate": 0,
+        "reach": 0
+      },
+      "handle": "@gild.hq",
+      "url": "https://www.instagram.com/gild.hq/",
+      "status": "profile_linked",
+      "trend": {
+        "followers": 0,
+        "engagementRate": 0
+      }
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "metrics": {
+        "subscribers": 26,
+        "videos": 8,
+        "views": 0,
+        "engagementRate": 0
+      },
+      "handle": "@GILDhq",
+      "url": "https://www.youtube.com/@GILDhq",
+      "channelId": "UCC0lbied2G_PVm_WVK-xhrw",
+      "status": "profile_linked",
+      "trend": {
+        "subscribers": 0,
+        "views": 0
+      }
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "metrics": {
+        "followers": 0,
+        "episodes": 0,
+        "popularity": 0,
+        "saves": 0
+      },
+      "handle": "GILD Podcast",
+      "url": "https://creators.spotify.com/pod/show/0TSnQszN4VY8tyOgIYPsQy/episodes",
+      "showId": "0TSnQszN4VY8tyOgIYPsQy",
+      "status": "profile_linked",
+      "trend": {
+        "followers": 0,
+        "popularity": 0
+      }
+    },
+    {
+      "id": "newsletter",
+      "name": "Newsletter",
+      "metrics": {
+        "subscribers": 16963,
+        "posts": 64,
+        "openRate": 32.55,
+        "clickRate": 2.99,
+        "sent": 418157
+      },
+      "handle": "GILD",
+      "url": "https://www.beehiiv.com/",
+      "status": "connected",
+      "publicationId": "pub_133849f3-7359-4235-ae8a-ad324fae93ef"
+    },
+    {
+      "id": "website",
+      "name": "Website",
+      "metrics": {
+        "users": 0,
+        "sessions": 0,
+        "pageViews": 18978,
+        "events": 7,
+        "errors": 0
+      },
+      "handle": "gildhq.com",
+      "url": "https://gildhq.com/",
+      "status": "connected"
+    }
+  ],
+  "recentPosts": [
+    {
+      "id": "linkedin:profile-signal:2026-08",
+      "platform": "linkedin",
+      "format": "profile_signal",
+      "title": "LinkedIn profile signal",
+      "publishedAt": "2026-08-21T13:39:35.688Z",
+      "month": "2026-08",
+      "url": "https://www.linkedin.com/company/joingild/?viewAsMember=true",
+      "metric": "1372 proxy score",
+      "metrics": {
+        "followers": 1016,
+        "subscribers": 0,
+        "users": 0,
+        "posts": 0,
+        "videos": 0,
+        "episodes": 0,
+        "views": 0,
+        "sessions": 0
+      },
+      "score": 1372,
+      "signal": "profile_proxy",
+      "nextUse": "Priority channel: import post analytics, then turn best POV posts into event and newsletter assets."
+    },
+    {
+      "id": "instagram:profile-signal:2026-08",
+      "platform": "instagram",
+      "format": "profile_signal",
+      "title": "Instagram profile signal",
+      "publishedAt": "2026-08-21T13:39:35.688Z",
+      "month": "2026-08",
+      "url": "https://www.instagram.com/gild.hq/",
+      "metric": "600 proxy score",
+      "metrics": {
+        "followers": 80,
+        "subscribers": 0,
+        "users": 0,
+        "posts": 50,
+        "videos": 0,
+        "episodes": 0,
+        "views": 0,
+        "sessions": 0
+      },
+      "score": 600,
+      "signal": "profile_proxy",
+      "nextUse": "Priority channel: import reel/post insights, then double down on rooms, clips and social proof."
+    },
+    {
+      "id": "youtube:-yN46krtHv0",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Why AI Products Get Crushed | Anand Arivukkarasu (AI Product Strategy Advisor)",
+      "publishedAt": "2026-07-08T19:52:56.000Z",
+      "month": "2026-07",
+      "url": "https://www.youtube.com/watch?v=-yN46krtHv0",
+      "metric": "51 views",
+      "metrics": {
+        "views": 51
+      },
+      "score": 51,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:SAjqSeSKrJg",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Senior AI Leaders Are Looking for Something AI Can’t Replace | Raphael Varieras (SVP, Zello)",
+      "publishedAt": "2026-06-03T23:21:58.000Z",
+      "month": "2026-06",
+      "url": "https://www.youtube.com/watch?v=SAjqSeSKrJg",
+      "metric": "139 views",
+      "metrics": {
+        "views": 139
+      },
+      "score": 139,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:-1CdZN-N6ak",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Building a Billion-Dollar Company With 10 Employees | Kirsten Karchmer (CEO, Conceivable)",
+      "publishedAt": "2026-05-20T18:59:23.000Z",
+      "month": "2026-05",
+      "url": "https://www.youtube.com/watch?v=-1CdZN-N6ak",
+      "metric": "34 views",
+      "metrics": {
+        "views": 34
+      },
+      "score": 34,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:XWjV9m4ZKwA",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Why In-Person Networking is About to Explode (Again) | Thom Singer (CEO, Austin Technology Council)",
+      "publishedAt": "2026-05-06T15:29:12.000Z",
+      "month": "2026-05",
+      "url": "https://www.youtube.com/watch?v=XWjV9m4ZKwA",
+      "metric": "115 views",
+      "metrics": {
+        "views": 115
+      },
+      "score": 115,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:QBr7ZQzo0RM",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "AI Is Stealing Your Traffic (And You Can’t Track It) | Ross Hudgens (CEO, Siege Media)",
+      "publishedAt": "2026-04-22T15:18:42.000Z",
+      "month": "2026-04",
+      "url": "https://www.youtube.com/watch?v=QBr7ZQzo0RM",
+      "metric": "43 views",
+      "metrics": {
+        "views": 43
+      },
+      "score": 43,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:sCswyg_iSRM",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "AI Is Breaking Cybersecurity, And Most Companies Aren’t Ready | Yasmin Abdi  (CEO, NoHack)",
+      "publishedAt": "2026-04-08T14:59:17.000Z",
+      "month": "2026-04",
+      "url": "https://www.youtube.com/watch?v=sCswyg_iSRM",
+      "metric": "251 views",
+      "metrics": {
+        "views": 251
+      },
+      "score": 251,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    }
+  ],
+  "audienceHistory": [
+    {
+      "label": "S-7",
+      "linkedin": 1015,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16964,
+      "website": 0
+    },
+    {
+      "label": "S-6",
+      "linkedin": 1015,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16964,
+      "website": 0
+    },
+    {
+      "label": "S-5",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16964,
+      "website": 0
+    },
+    {
+      "label": "S-4",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16964,
+      "website": 0
+    },
+    {
+      "label": "S-3",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16964,
+      "website": 0
+    },
+    {
+      "label": "S-2",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16963,
+      "website": 0
+    },
+    {
+      "label": "S-1",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16963,
+      "website": 0
+    },
+    {
+      "label": "Now",
+      "linkedin": 1016,
+      "instagram": 80,
+      "youtube": 26,
+      "spotify": 0,
+      "newsletter": 16963,
+      "website": 0
+    }
+  ],
+  "contentPipeline": [
+    {
+      "type": "Event recap",
+      "channel": "LinkedIn",
+      "status": "ready_for_sync",
+      "goal": "Founder and operator credibility"
+    },
+    {
+      "type": "Short clip",
+      "channel": "Instagram",
+      "status": "ready_for_sync",
+      "goal": "Room energy and social proof"
+    },
+    {
+      "type": "Long-form video",
+      "channel": "YouTube",
+      "status": "ready_for_sync",
+      "goal": "Evergreen thought leadership"
+    },
+    {
+      "type": "Podcast episode",
+      "channel": "Spotify",
+      "status": "ready_for_sync",
+      "goal": "Depth and relationship building"
+    }
+  ],
+  "sourceStatus": {
+    "linkedin": {
+      "url": "https://www.linkedin.com/company/joingild/?viewAsMember=true",
+      "sync": "profile_linked",
+      "note": "LinkedIn needs OAuth for posts and analytics."
+    },
+    "instagram": {
+      "url": "https://www.instagram.com/gild.hq/",
+      "sync": "profile_linked",
+      "note": "Instagram needs Graph API token for durable metrics."
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/@GILDhq",
+      "sync": "public_rss",
+      "note": "YouTube public RSS is active; API key adds views and full stats."
+    },
+    "spotify": {
+      "url": "https://creators.spotify.com/pod/show/0TSnQszN4VY8tyOgIYPsQy/episodes",
+      "sync": "public_oembed",
+      "note": "Spotify oEmbed is active; API credentials add episode count."
+    },
+    "newsletter": {
+      "url": "https://www.beehiiv.com/",
+      "sync": "api",
+      "note": "Beehiiv API is active."
+    },
+    "website": {
+      "url": "https://gildhq.com/",
+      "sync": "cloudflare_zone_api",
+      "note": "Cloudflare website metrics are active."
+    }
+  },
+  "contentItems": [
+    {
+      "id": "linkedin:profile-signal:2026-08",
+      "platform": "linkedin",
+      "format": "profile_signal",
+      "title": "LinkedIn profile signal",
+      "publishedAt": "2026-08-21T13:39:35.688Z",
+      "month": "2026-08",
+      "url": "https://www.linkedin.com/company/joingild/?viewAsMember=true",
+      "metric": "1372 proxy score",
+      "metrics": {
+        "followers": 1016,
+        "subscribers": 0,
+        "users": 0,
+        "posts": 0,
+        "videos": 0,
+        "episodes": 0,
+        "views": 0,
+        "sessions": 0
+      },
+      "score": 1372,
+      "signal": "profile_proxy",
+      "nextUse": "Priority channel: import post analytics, then turn best POV posts into event and newsletter assets."
+    },
+    {
+      "id": "instagram:profile-signal:2026-08",
+      "platform": "instagram",
+      "format": "profile_signal",
+      "title": "Instagram profile signal",
+      "publishedAt": "2026-08-21T13:39:35.688Z",
+      "month": "2026-08",
+      "url": "https://www.instagram.com/gild.hq/",
+      "metric": "600 proxy score",
+      "metrics": {
+        "followers": 80,
+        "subscribers": 0,
+        "users": 0,
+        "posts": 50,
+        "videos": 0,
+        "episodes": 0,
+        "views": 0,
+        "sessions": 0
+      },
+      "score": 600,
+      "signal": "profile_proxy",
+      "nextUse": "Priority channel: import reel/post insights, then double down on rooms, clips and social proof."
+    },
+    {
+      "id": "youtube:-yN46krtHv0",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Why AI Products Get Crushed | Anand Arivukkarasu (AI Product Strategy Advisor)",
+      "publishedAt": "2026-07-08T19:52:56.000Z",
+      "month": "2026-07",
+      "url": "https://www.youtube.com/watch?v=-yN46krtHv0",
+      "metric": "51 views",
+      "metrics": {
+        "views": 51
+      },
+      "score": 51,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:SAjqSeSKrJg",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Senior AI Leaders Are Looking for Something AI Can’t Replace | Raphael Varieras (SVP, Zello)",
+      "publishedAt": "2026-06-03T23:21:58.000Z",
+      "month": "2026-06",
+      "url": "https://www.youtube.com/watch?v=SAjqSeSKrJg",
+      "metric": "139 views",
+      "metrics": {
+        "views": 139
+      },
+      "score": 139,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:-1CdZN-N6ak",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Building a Billion-Dollar Company With 10 Employees | Kirsten Karchmer (CEO, Conceivable)",
+      "publishedAt": "2026-05-20T18:59:23.000Z",
+      "month": "2026-05",
+      "url": "https://www.youtube.com/watch?v=-1CdZN-N6ak",
+      "metric": "34 views",
+      "metrics": {
+        "views": 34
+      },
+      "score": 34,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:XWjV9m4ZKwA",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "Why In-Person Networking is About to Explode (Again) | Thom Singer (CEO, Austin Technology Council)",
+      "publishedAt": "2026-05-06T15:29:12.000Z",
+      "month": "2026-05",
+      "url": "https://www.youtube.com/watch?v=XWjV9m4ZKwA",
+      "metric": "115 views",
+      "metrics": {
+        "views": 115
+      },
+      "score": 115,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:QBr7ZQzo0RM",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "AI Is Stealing Your Traffic (And You Can’t Track It) | Ross Hudgens (CEO, Siege Media)",
+      "publishedAt": "2026-04-22T15:18:42.000Z",
+      "month": "2026-04",
+      "url": "https://www.youtube.com/watch?v=QBr7ZQzo0RM",
+      "metric": "43 views",
+      "metrics": {
+        "views": 43
+      },
+      "score": 43,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:sCswyg_iSRM",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "AI Is Breaking Cybersecurity, And Most Companies Aren’t Ready | Yasmin Abdi  (CEO, NoHack)",
+      "publishedAt": "2026-04-08T14:59:17.000Z",
+      "month": "2026-04",
+      "url": "https://www.youtube.com/watch?v=sCswyg_iSRM",
+      "metric": "251 views",
+      "metrics": {
+        "views": 251
+      },
+      "score": 251,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:JUaagFr0aAA",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "How AI Is Changing Hiring | Prakhar Agrawal (CEO, Senseloaf)",
+      "publishedAt": "2026-03-09T20:33:31.000Z",
+      "month": "2026-03",
+      "url": "https://www.youtube.com/watch?v=JUaagFr0aAA",
+      "metric": "89 views",
+      "metrics": {
+        "views": 89
+      },
+      "score": 89,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "youtube:xYB0ZO6W764",
+      "platform": "youtube",
+      "format": "long_form_video",
+      "title": "How AI Is Creating One-Person Teams | Sagar Babber (CEO, GleanTap)",
+      "publishedAt": "2026-03-06T17:12:40.000Z",
+      "month": "2026-03",
+      "url": "https://www.youtube.com/watch?v=xYB0ZO6W764",
+      "metric": "109 views",
+      "metrics": {
+        "views": 109
+      },
+      "score": 109,
+      "signal": "public_rss",
+      "nextUse": "Clip for LinkedIn + Instagram; full episode stays YouTube."
+    },
+    {
+      "id": "spotify:0TSnQszN4VY8tyOgIYPsQy",
+      "platform": "spotify",
+      "format": "podcast_show",
+      "title": "Why AI Products Get Crushed | Anand Arivukkarasu (AI Product Strategy Advisor)",
+      "publishedAt": null,
+      "month": "unknown",
+      "url": "https://open.spotify.com/show/0TSnQszN4VY8tyOgIYPsQy",
+      "metric": "oEmbed público",
+      "metrics": {},
+      "score": null,
+      "signal": "public_oembed",
+      "nextUse": "Pair with YouTube clips and LinkedIn quote cards."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/can-ai-ship-faster-than-teams-can-understand-it-what-s-next-at-gild-1",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Can AI Ship Faster Than Teams Can Understand It? What’s Next at GILD (1)",
+      "publishedAt": "2026-08-21T13:17:45.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/can-ai-ship-faster-than-teams-can-understand-it-what-s-next-at-gild-1",
+      "metric": "0 opens",
+      "metrics": {
+        "opens": 0,
+        "clicks": 0,
+        "views": 0,
+        "openRate": 0,
+        "clickRate": 0
+      },
+      "score": 1,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/new-post",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "New post",
+      "publishedAt": "2026-08-19T20:44:50.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/new-post",
+      "metric": "0 opens",
+      "metrics": {
+        "opens": 0,
+        "clicks": 0,
+        "views": 0,
+        "openRate": 0,
+        "clickRate": 0
+      },
+      "score": 1,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/join-the-conversation-at-the-next-gild-ai-forums-1",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Join the Conversation at the Next GILD AI Forums (1)",
+      "publishedAt": "2026-08-03T21:51:15.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/join-the-conversation-at-the-next-gild-ai-forums-1",
+      "metric": "0 opens",
+      "metrics": {
+        "opens": 0,
+        "clicks": 0,
+        "views": 0,
+        "openRate": 0,
+        "clickRate": 0
+      },
+      "score": 1,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/can-ai-ship-faster-than-teams-can-understand-it-what-s-next-at-gild",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Can AI Ship Faster Than Teams Can Understand It? What’s Next at GILD",
+      "publishedAt": "2026-08-19T13:00:00.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/can-ai-ship-faster-than-teams-can-understand-it-what-s-next-at-gild",
+      "metric": "4818 opens",
+      "metrics": {
+        "opens": 4818,
+        "clicks": 96,
+        "views": 18,
+        "openRate": 35.16,
+        "clickRate": 1.99
+      },
+      "score": 5115,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/the-austin-forum-is-tonight-miami-is-next",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "The Austin Forum Is Tonight. Miami Is Next.",
+      "publishedAt": "2026-08-11T13:00:00.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/the-austin-forum-is-tonight-miami-is-next",
+      "metric": "5656 opens",
+      "metrics": {
+        "opens": 5656,
+        "clicks": 97,
+        "views": 4,
+        "openRate": 41.17,
+        "clickRate": 1.71
+      },
+      "score": 5949,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/join-the-conversation-at-the-next-gild-ai-forums",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Join the Conversation at the Next GILD AI Forums",
+      "publishedAt": "2026-08-04T13:00:00.000Z",
+      "month": "2026-08",
+      "url": "https://gild-austin.beehiiv.com/p/join-the-conversation-at-the-next-gild-ai-forums",
+      "metric": "3393 opens",
+      "metrics": {
+        "opens": 3393,
+        "clicks": 69,
+        "views": 12,
+        "openRate": 24.61,
+        "clickRate": 2.03
+      },
+      "score": 3606,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/be-on-the-gild-podcast",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Be on the GILD Podcast?",
+      "publishedAt": "2026-07-30T13:00:00.000Z",
+      "month": "2026-07",
+      "url": "https://gild-austin.beehiiv.com/p/be-on-the-gild-podcast",
+      "metric": "3857 opens",
+      "metrics": {
+        "opens": 3857,
+        "clicks": 307,
+        "views": 0,
+        "openRate": 27.82,
+        "clickRate": 7.96
+      },
+      "score": 4778,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/which-gild-ai-forum-is-closest-to-you",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Which GILD AI Forum Is Closest to You?",
+      "publishedAt": "2026-07-28T13:00:00.000Z",
+      "month": "2026-07",
+      "url": "https://gild-austin.beehiiv.com/p/which-gild-ai-forum-is-closest-to-you",
+      "metric": "6262 opens",
+      "metrics": {
+        "opens": 6262,
+        "clicks": 148,
+        "views": 34,
+        "openRate": 44.02,
+        "clickRate": 2.36
+      },
+      "score": 6723,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/austin-miami-dallas-upcoming-gild-ai-forums",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Austin, Miami, Dallas: Upcoming GILD AI Forums",
+      "publishedAt": "2026-07-21T13:00:00.000Z",
+      "month": "2026-07",
+      "url": "https://gild-austin.beehiiv.com/p/austin-miami-dallas-upcoming-gild-ai-forums",
+      "metric": "5694 opens",
+      "metrics": {
+        "opens": 5694,
+        "clicks": 78,
+        "views": 29,
+        "openRate": 39.45,
+        "clickRate": 1.37
+      },
+      "score": 5943,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "newsletter:https://gild-austin.beehiiv.com/p/tonight-in-austin-next-week-in-miami-private-ai-leadership-dinners",
+      "platform": "newsletter",
+      "format": "newsletter_post",
+      "title": "Tonight in Austin, Next Week in Miami: Private AI Leadership Dinners",
+      "publishedAt": "2026-07-14T13:00:00.000Z",
+      "month": "2026-07",
+      "url": "https://gild-austin.beehiiv.com/p/tonight-in-austin-next-week-in-miami-private-ai-leadership-dinners",
+      "metric": "5613 opens",
+      "metrics": {
+        "opens": 5613,
+        "clicks": 69,
+        "views": 27,
+        "openRate": 39.3,
+        "clickRate": 1.23
+      },
+      "score": 5834,
+      "signal": "beehiiv_api",
+      "nextUse": "Use top newsletter topics as LinkedIn POV posts and Instagram carousel/reel scripts."
+    },
+    {
+      "id": "website:https://gildhq.com/",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website / Home",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/",
+      "metric": "18782 views",
+      "metrics": {
+        "views": 18782,
+        "bytes": 285709114
+      },
+      "score": 18782,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/podcast",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /podcast",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/podcast",
+      "metric": "40 views",
+      "metrics": {
+        "views": 40,
+        "bytes": 633334
+      },
+      "score": 40,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/sponsors",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /sponsors",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/sponsors",
+      "metric": "37 views",
+      "metrics": {
+        "views": 37,
+        "bytes": 426200
+      },
+      "score": 37,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/newsletter",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /newsletter",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/newsletter",
+      "metric": "33 views",
+      "metrics": {
+        "views": 33,
+        "bytes": 257362
+      },
+      "score": 33,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/blog",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /blog",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/blog",
+      "metric": "30 views",
+      "metrics": {
+        "views": 30,
+        "bytes": 258171
+      },
+      "score": 30,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/podcast/why-ai-products-get-crushed-anand-arivukkarasu-ai-product-strategy-advisor",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /podcast/why-ai-products-get-crushed-anand-arivukkarasu-ai-product-strategy-advisor",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/podcast/why-ai-products-get-crushed-anand-arivukkarasu-ai-product-strategy-advisor",
+      "metric": "29 views",
+      "metrics": {
+        "views": 29,
+        "bytes": 314891
+      },
+      "score": 29,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    },
+    {
+      "id": "website:https://gildhq.com/podcast/why-in-person-networking-is-about-to-explode-again-thom-singer-ceo-austin-technology-council",
+      "platform": "website",
+      "format": "website_section",
+      "title": "Website /podcast/why-in-person-networking-is-about-to-explode-again-thom-singer-ceo-austin-technology-council",
+      "publishedAt": "2026-08-21T13:39:35.141Z",
+      "month": "2026-08",
+      "url": "https://gildhq.com/podcast/why-in-person-networking-is-about-to-explode-again-thom-singer-ceo-austin-technology-council",
+      "metric": "27 views",
+      "metrics": {
+        "views": 27,
+        "bytes": 280622
+      },
+      "score": 27,
+      "signal": "cloudflare_zone_api",
+      "nextUse": "Use this section demand to decide what should be pushed next on LinkedIn, Instagram and newsletter."
+    }
+  ]
+}

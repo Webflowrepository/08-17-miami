@@ -1,0 +1,409 @@
+---
+/**
+ * EventCalendar.astro — Dark editorial calendar for upcoming GILD events
+ * Style: Inspired by the reference screenshot, adapted to VISUAL_DIRECTION.md
+ * Future: Connect to Luma API or embed for real event data
+ * 
+ * Calendar renders current month, highlights today, shows event dots
+ * Prev/Next navigation, "Today" button
+ * 
+ * Luma integration options:
+ * 1. Embed: Replace with <luma-calendar> widget
+ * 2. API: Fetch from server proxy endpoint (requires Luma Plus)
+ * 3. Manual: Define events in the lumaEvents array below
+ */
+
+interface Props {
+  calendarUrl?: string; /* Luma calendar URL e.g. https://lu.ma/gild */
+}
+
+const { calendarUrl } = Astro.props;
+---
+
+<section id="event-calendar" class="calendar-section" aria-label="Upcoming events calendar">
+  <div class="calendar-container">
+    <!-- Header -->
+    <div class="calendar-header">
+      <div class="calendar-title-row">
+        <h2 class="text-display-m calendar-month-label" id="calendar-month-label"></h2>
+        <div class="calendar-nav">
+          <button class="calendar-nav-btn" id="btn-today" aria-label="Go to today">Today</button>
+          <button class="calendar-nav-btn calendar-arrow" id="btn-prev" aria-label="Previous month">←</button>
+          <button class="calendar-nav-btn calendar-arrow" id="btn-next" aria-label="Next month">→</button>
+        </div>
+      </div>
+      {calendarUrl && (
+        <a href={calendarUrl} target="_blank" rel="noopener" class="text-body-s calendar-luma-link">
+          View on Luma →
+        </a>
+      )}
+    </div>
+
+    <!-- Day headers -->
+    <div class="calendar-grid calendar-weekdays">
+      <span class="text-eyebrow">MON</span>
+      <span class="text-eyebrow">TUE</span>
+      <span class="text-eyebrow">WED</span>
+      <span class="text-eyebrow">THU</span>
+      <span class="text-eyebrow">FRI</span>
+      <span class="text-eyebrow">SAT</span>
+      <span class="text-eyebrow">SUN</span>
+    </div>
+
+    <!-- Day cells — rendered by JS -->
+    <div class="calendar-grid calendar-days" id="calendar-days"></div>
+
+    <!-- Footer -->
+    <div class="calendar-footer">
+      <p class="text-body-s" style="color: var(--color-fg-subtle);">
+        Upcoming GILD events
+      </p>
+      {calendarUrl && (
+        <a href={calendarUrl} target="_blank" rel="noopener" class="text-mono calendar-rsvp-link">
+          RSVP on Luma →
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .calendar-section {
+    padding: 96px 24px;
+  }
+
+  .calendar-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--color-bg-elevated);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ── Header ── */
+  .calendar-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .calendar-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .calendar-month-label {
+    margin: 0;
+    color: var(--color-fg);
+  }
+
+  .calendar-nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .calendar-nav-btn {
+    background: transparent;
+    color: var(--color-fg-muted);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background var(--duration-hover) var(--ease-entrance),
+                color var(--duration-hover) var(--ease-entrance);
+    border: 1px solid var(--color-rule);
+  }
+
+  .calendar-nav-btn:hover {
+    background: var(--color-bg-base);
+    color: var(--color-fg);
+  }
+
+  .calendar-arrow {
+    padding: 6px 10px;
+    font-size: 16px;
+    border: none;
+  }
+
+  .calendar-luma-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-hover) var(--ease-entrance);
+  }
+
+  .calendar-luma-link:hover {
+    color: var(--color-fg);
+  }
+
+  /* ── Grid ── */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .calendar-weekdays {
+    gap: 4px;
+  }
+
+  .calendar-weekdays span {
+    text-align: center;
+    padding: 8px 0;
+    color: var(--color-fg-subtle);
+  }
+
+  /* ── Footer ── */
+  .calendar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .calendar-rsvp-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-hover) var(--ease-entrance);
+  }
+
+  .calendar-rsvp-link:hover {
+    color: var(--color-fg);
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 768px) {
+    .calendar-section {
+      padding: 192px 64px;
+    }
+
+    .calendar-container {
+      padding: 40px;
+    }
+  }
+</style>
+
+<style is:global>
+  /* ── Calendar Day Cells (rendered by JS) ── */
+  .cal-day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--color-bg-base);
+    cursor: default;
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-fg-muted);
+    transition: background var(--duration-hover) var(--ease-entrance);
+    gap: 4px;
+  }
+
+  .cal-day:hover {
+    background: oklch(0.22 0.025 235);
+  }
+
+  .cal-day--empty {
+    background: transparent;
+    cursor: default;
+  }
+
+  .cal-day--empty:hover {
+    background: transparent;
+  }
+
+  .cal-day--today {
+    background: var(--color-accent);
+    color: var(--color-bg-deep);
+    font-weight: 500;
+    border-radius: 10px;
+  }
+
+  .cal-day--today:hover {
+    background: var(--color-accent);
+  }
+
+  .cal-day--other-month {
+    color: var(--color-fg-subtle);
+    opacity: 0.4;
+  }
+
+  .cal-day--has-event {
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    color: var(--color-fg) !important;
+    font-weight: 500;
+    overflow: hidden;
+    border-radius: 8px; /* Slightly more square */
+  }
+
+  .cal-day--has-event::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+    border-radius: 8px;
+    z-index: 1;
+    transition: opacity var(--duration-hover) var(--ease-entrance);
+  }
+
+  .cal-day--has-event:hover::before {
+    opacity: 0.8;
+  }
+
+  .cal-day--has-event span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .cal-day--past {
+    opacity: 0.5;
+    filter: grayscale(100%);
+  }
+</style>
+
+<script>
+  /**
+   * Calendar rendering engine
+   * Renders current month, handles navigation
+   * 
+   * TO CONNECT LUMA:
+   * Replace the `events` array with data fetched from your Luma API proxy:
+   *   fetch('/api/luma-events').then(r => r.json()).then(data => { ... })
+   * 
+   * Event format: { date: 'YYYY-MM-DD', title: string, url?: string, image?: string }
+   */
+
+  // ── GILD Events from lu.ma/gild ──
+  // Las imágenes cargadas corresponden a los covers reales
+  const events: Array<{ date: string; title: string; url?: string; image?: string }> = [
+    { date: '2026-05-27', title: 'GILD AI Forum', url: 'https://luma.com/gild', image: '/assets/photos/events/05-27.webp' },
+    { date: '2026-06-16', title: 'GILD AI Forum', url: 'https://luma.com/gild', image: '/assets/photos/events/06-16.webp' },
+    { date: '2026-07-14', title: 'GILD AI Forum', url: 'https://luma.com/gild', image: '/assets/photos/events/07-14.webp' },
+  ];
+
+  let currentDate = new Date();
+  let displayMonth = currentDate.getMonth();
+  let displayYear = currentDate.getFullYear();
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  function getEvent(year: number, month: number, day: number) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    return events.find(e => e.date === dateStr);
+  }
+
+  function hasEvent(year: number, month: number, day: number): boolean {
+    return !!getEvent(year, month, day);
+  }
+
+  /* Check if a date is in the past */
+  function isPast(year: number, month: number, day: number): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return new Date(year, month, day) < today;
+  }
+
+  function renderCalendar(): void {
+    const label = document.getElementById('calendar-month-label');
+    const grid = document.getElementById('calendar-days');
+    if (!label || !grid) return;
+
+    // Update label
+    label.textContent = `${monthNames[displayMonth]}, ${displayYear}`;
+
+    // First day of month (0=Sun, adjust to Mon start)
+    const firstDay = new Date(displayYear, displayMonth, 1).getDay();
+    const startOffset = firstDay === 0 ? 6 : firstDay - 1; // Mon=0
+
+    // Days in month
+    const daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate();
+    const daysInPrevMonth = new Date(displayYear, displayMonth, 0).getDate();
+
+    // Today
+    const today = new Date();
+    const isCurrentMonth = today.getMonth() === displayMonth && today.getFullYear() === displayYear;
+
+    let html = '';
+
+    // Previous month trailing days
+    for (let i = startOffset - 1; i >= 0; i--) {
+      const day = daysInPrevMonth - i;
+      html += `<div class="cal-day cal-day--empty cal-day--other-month">${day}</div>`;
+    }
+
+    // Current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const isToday = isCurrentMonth && day === today.getDate();
+      const event = getEvent(displayYear, displayMonth, day);
+      const past = isPast(displayYear, displayMonth, day);
+
+      let classes = 'cal-day';
+      if (isToday) classes += ' cal-day--today';
+      if (event) classes += ' cal-day--has-event';
+      if (past && !isToday) classes += ' cal-day--past';
+
+      const titleAttr = event ? ` title="${event.title}"` : '';
+      const dataUrl = event?.url ? ` data-url="${event.url}"` : '';
+      const bgStyle = event?.image ? ` style="background-image: url('${event.image}')"` : '';
+
+      html += `<div class="${classes}"${titleAttr}${dataUrl}${bgStyle}>
+        <span>${day}</span>
+      </div>`;
+    }
+
+    // Fill remaining cells to complete the grid
+    const totalCells = startOffset + daysInMonth;
+    const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (let i = 1; i <= remaining; i++) {
+      html += `<div class="cal-day cal-day--empty cal-day--other-month">${i}</div>`;
+    }
+
+    grid.innerHTML = html;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderCalendar();
+
+    document.getElementById('btn-prev')?.addEventListener('click', () => {
+      displayMonth--;
+      if (displayMonth < 0) { displayMonth = 11; displayYear--; }
+      renderCalendar();
+    });
+
+    document.getElementById('btn-next')?.addEventListener('click', () => {
+      displayMonth++;
+      if (displayMonth > 11) { displayMonth = 0; displayYear++; }
+      renderCalendar();
+    });
+
+    document.getElementById('btn-today')?.addEventListener('click', () => {
+      const now = new Date();
+      displayMonth = now.getMonth();
+      displayYear = now.getFullYear();
+      renderCalendar();
+    });
+
+    /* Click to open Luma event */
+    document.getElementById('calendar-days')?.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('.cal-day--has-event') as HTMLElement | null;
+      if (target?.dataset.url) {
+        window.open(target.dataset.url, '_blank', 'noopener');
+      }
+    });
+  });
+</script>

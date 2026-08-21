@@ -1,0 +1,88 @@
+---
+/**
+ * Voices.astro — Attendee quotes
+ * Layout: Single column, max-width 720px
+ * Typography: Display M for quotes, Body S for attribution
+ * No quotation marks as decorative elements — the text speaks
+ */
+
+interface Voice {
+  quote: string;
+  attribution: string;
+}
+
+interface Props {
+  voices: Voice[];
+}
+
+const { voices } = Astro.props;
+---
+
+<section
+  id="voices"
+  class="voices-section"
+  aria-label="Voices from the room"
+>
+  <div class="voices-content">
+    {voices.map((voice) => (
+      <blockquote class="voice-item">
+        <p class="text-display-m" style={`color: var(--color-fg);`}>
+          "{voice.quote}"
+        </p>
+        <footer class="text-eyebrow" style={`color: var(--color-fg-subtle);`}>
+          {voice.attribution}
+        </footer>
+      </blockquote>
+    ))}
+  </div>
+</section>
+
+<style>
+  .voices-section {
+    padding: 96px 24px;
+  }
+
+  .voices-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .voice-item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .voice-item p {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .voices-section {
+      padding: 192px 64px;
+    }
+
+    .voices-content {
+      gap: 64px;
+    }
+
+    .voice-item {
+      gap: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateFadeUp('.voices-section', '.voice-item', {
+      stagger: 0.06,
+    });
+  });
+</script>

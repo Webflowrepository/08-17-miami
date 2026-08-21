@@ -1,0 +1,307 @@
+---
+/**
+ * Landing page — Post Event Portal
+ */
+
+import Layout from '../layouts/Layout.astro';
+import RoomInAggregate from '../components/RoomInAggregate.astro';
+import Briefing from '../components/Briefing.astro';
+import Gallery from '../components/Gallery.astro';
+import editionData from '../content/edition-no-01.json';
+
+import '../styles/global.css';
+---
+
+<Layout
+  title="GILD — Post Event Portal"
+  description="We truly appreciated having you at this GILD Edition."
+>
+  <!-- 01. HERO -->
+  <section class="hero-section">
+    <div class="hero-top">
+      <img src="/assets/logos/logo-gild.png" alt="GILD" class="gild-logo" />
+      <p class="hero-eyebrow text-eyebrow">AI Forum</p>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-title">
+        <span class="block overflow-hidden">
+          <span class="hero-line block">Thanks for</span>
+        </span>
+        <span class="block overflow-hidden">
+          <span class="hero-line block">joining us!</span>
+        </span>
+      </h1>
+    </div>
+
+    <div class="hero-bottom">
+      <p class="hero-partner-label text-body-s">Presented in partnership with</p>
+      <a href="https://www.tecla.io/" target="_blank" rel="noopener" class="partner-link">
+        <img src="/assets/logos/tecla.png" alt="Tecla" class="partner-logo" />
+      </a>
+      <svg class="hero-scroll-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 02. GALLERY -->
+  <Gallery
+    eyebrow={editionData.gallery.eyebrow}
+    photos={editionData.gallery.photos}
+  />
+  
+  <!-- 03. NEXT EVENT -->
+  <section class="next-event-wrapper">
+    <div class="next-event-header">
+      <h2 class="text-display-m" style="color: var(--color-fg); text-align: center;">
+        Next Event GILD Austin
+      </h2>
+    </div>
+    <div class="next-event-content">
+      <a href="https://luma.com/GILD23" target="_blank" rel="noopener" class="next-event-link">
+        <img src="/assets/photos/events/gild23.png" alt="Next Event GILD AI Forum" class="next-event-image" />
+        <div class="next-event-overlay">
+          <span class="text-button">RSVP ON LUMA →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+</Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero-section {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 48px 24px;
+    box-sizing: border-box;
+  }
+
+  .hero-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .gild-logo {
+    height: 42px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .hero-eyebrow {
+    color: #7ec8b8;
+    margin: 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .hero-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5.6vw, 4.4rem);
+    line-height: 1.15;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    margin: 0;
+    max-width: 1000px;
+  }
+
+  .hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-partner-label {
+    color: var(--color-fg-muted);
+    margin: 0;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .partner-link {
+    display: inline-block;
+    transition: opacity var(--duration-hover) var(--ease-entrance);
+  }
+
+  .partner-link:hover {
+    opacity: 0.8;
+  }
+
+  .partner-logo {
+    height: 44px;
+    width: auto;
+  }
+
+  .hero-scroll-arrow {
+    color: var(--color-fg-muted);
+    margin-top: 12px;
+    animation: hero-bounce 2s ease-in-out infinite;
+    width: 28px;
+    height: 28px;
+  }
+
+  @keyframes hero-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 0.9; }
+  }
+
+  /* ── NEXT EVENT WRAPPER ── */
+  .next-event-wrapper {
+    padding: 64px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .next-event-header {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .next-event-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .next-event-link {
+    display: block;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform var(--duration-hover) var(--ease-entrance);
+  }
+
+  .next-event-link:hover {
+    transform: scale(1.02);
+  }
+
+  .next-event-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .next-event-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--duration-hover) var(--ease-entrance);
+  }
+
+  .next-event-link:hover .next-event-overlay {
+    opacity: 1;
+  }
+
+  .text-button {
+    color: white;
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Mobile: fit hero in 100vh ── */
+  @media (max-width: 767px) {
+    .hero-section {
+      min-height: 85vh;
+      min-height: 85dvh;
+      padding: 48px 20px;
+    }
+
+    .hero-top {
+      gap: 14px;
+    }
+
+    .gild-logo {
+      height: 28px;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+    }
+
+    .hero-center {
+      padding: 20px 0;
+    }
+
+    .hero-title {
+      font-size: 1.6rem;
+    }
+
+    .hero-bottom {
+      gap: 8px;
+    }
+
+    .hero-partner-label {
+      font-size: 9px;
+    }
+
+    .sponsor-logo {
+      height: 28px;
+    }
+
+    .hero-scroll-arrow {
+      margin-top: 16px;
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  /* ── Desktop ── */
+  @media (min-width: 768px) {
+    .hero-section {
+      padding: 96px 64px;
+    }
+  }
+</style>
+
+<script>
+  import { animateCoverTitle, animateFadeUp } from '../lib/gsap-utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hero Entrance
+    animateCoverTitle('.hero-section', '.hero-line');
+    animateFadeUp('.hero-section', '.hero-top, .hero-bottom', {
+      stagger: 0.15,
+      delay: 0.4,
+    });
+
+    // Sections Entrance
+    animateFadeUp('.next-event-wrapper', '.next-event-header h2, .next-event-content', { stagger: 0.2 });
+  });
+</script>
