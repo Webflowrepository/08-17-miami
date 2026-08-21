@@ -80,13 +80,7 @@ const igPhotos = readdirSync(eventDir)
   -->
 
   <!-- 03. INSTAGRAM — live feed, instagram.com grid style -->
-  <!--
-    ACTIVATE FEED (one-time, ~5 min):
-    1. behold.so → sign up → connect @gild.hq
-    2. Create widget → Grid · Square · 3 columns · no captions · no border-radius
-    3. Copy Widget ID → replace BEHOLD_WIDGET_ID below
-    Feed auto-updates with every new post.
-  -->
+  <!-- The grid is replaced with the latest @gild.hq posts by /api/ig-feed. -->
   <section class="ig-section" aria-label="Follow GILD on Instagram">
 
     <!-- Profile header — like instagram.com -->
@@ -129,14 +123,14 @@ const igPhotos = readdirSync(eventDir)
 <style>
   /* ── HERO ── */
   .hero-section {
-    min-height: 85vh;
+    min-height: 62vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 24px;
-    padding: 48px 24px;
+    padding: 36px 24px;
     box-sizing: border-box;
   }
 
@@ -226,7 +220,7 @@ const igPhotos = readdirSync(eventDir)
 
   /* ── INSTAGRAM — instagram.com grid style ── */
   .ig-section {
-    padding-top: 24px;
+    padding-top: 8px;
     padding-bottom: 0;
   }
 
@@ -437,7 +431,8 @@ const igPhotos = readdirSync(eventDir)
   /* ── Desktop ── */
   @media (min-width: 768px) {
     .hero-section {
-      padding: 96px 64px;
+      min-height: 62vh;
+      padding: 56px 64px;
     }
   }
 </style>
